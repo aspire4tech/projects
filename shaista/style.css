@@ -394,7 +394,7 @@ form .btn2{
 /*  -------------css for small screens----------  */
 @media (max-width: 600px){
    #header{
-      background-image: url();
+      background-color: red;
    }
 
    .hamburger{
