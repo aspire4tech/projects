@@ -394,7 +394,7 @@ form .btn2{
 /*  -------------css for small screens----------  */
 @media (max-width: 600px){
    #header{
-      background-color: red;
+      background-image: url();
    }
 
    .hamburger{
@@ -402,7 +402,7 @@ form .btn2{
    }
 
    .header-text{
-      margin-top: 100%;
+      margin-top: 20%;
       font-size: 16px;
    }
    .header-text h1{
