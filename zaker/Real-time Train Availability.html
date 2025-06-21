@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConfirmTicket - Indian Railway Booking</title>
+  <link rel="icon" href="https://img.icons8.com/ios-filled/50/train.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --accent: #2563eb;
+      --bg: #f0f4f8;
+      --text: #1f2937;
+      --light: #ffffff;
+      --dark: #111827;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .dark-mode {
+      --bg: #111827;
+      --text: #f9fafb;
+      --light: #1f2937;
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+    .logo {
+      width: 60px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .typing {
+      font-size: 1.2rem;
+      color: #fcd34d;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: var(--light);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      animation: fadeSlide 0.5s ease-in;
+    }
+    @keyframes fadeSlide {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .btn {
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+    }
+    .btn:hover {
+      background: #1e40af;
+      transform: scale(1.05);
+    }
+    .page { display: none; }
+    .page.active { display: block; }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+    .dark-toggle {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .payment-options label {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle</button>
+    <img class="logo" src="https://img.icons8.com/ios-filled/100/train.png" alt="Train Logo" />
+    <h1>ConfirmTicket</h1>
+    <p class="typing" id="typingText"></p>
+  </header>
+
+  <div class="container page active" id="home">
+    <h2>Welcome to ConfirmTicket!</h2>
+    <ul>
+      <li>🚆 Real-time Train Availability</li>
+      <li>📆 Live Seat & Fare Checking</li>
+      <li>🧾 Instant PDF Ticket Generation</li>
+      <li>🧑 Passenger Login & Dashboard</li>
+      <li>🎁 Promo Code & Smart Payment</li>
+      <li>🌐 Responsive & Dark Mode</li>
+    </ul>
+    <button class="btn" onclick="nextPage('search')">Book Now</button>
+  </div>
+
+  <div class="container page" id="search">
+    <h2>Search Trains</h2>
+    <label>From:</label>
+    <select id="from">
+      <option>Mumbai</option><option>Pune</option><option>Delhi</option><option>Hyderabad</option><option>Nashik</option>
+    </select>
+    <label>To:</label>
+    <select id="to">
+      <option>Chennai</option><option>Kolkata</option><option>Delhi</option><option>Thane</option>
+    </select>
+    <label>Date:</label>
+    <input type="date" id="date">
+    <label>Tickets:</label>
+    <input type="number" id="tickets" value="1" min="1">
+    <div id="searchError" class="error"></div>
+    <button class="btn" onclick="validateSearch()">Search</button>
+  </div>
+
+  <div class="container page" id="trains">
+    <h2>Select Train</h2>
+    <select id="train">
+      <option>Rajdhani Express</option>
+      <option>Tejas Express</option>
+      <option>Duronto Express</option>
+      <option>Shatabdi Express</option>
+    </select>
+    <label>Class:</label>
+    <select id="trainClass">
+      <option>Sleeper (SL)</option>
+      <option>AC 3 Tier (3A)</option>
+      <option>AC 2 Tier (2A)</option>
+    </select>
+    <label>Passenger Name:</label>
+    <input type="text" id="passenger">
+    <div id="trainError" class="error"></div>
+    <button class="btn" onclick="validateTrain()">Continue to Payment</button>
+  </div>
+
+  <div class="container page" id="payment">
+    <h2>Payment</h2>
+    <label>Coupon Code (Optional):</label>
+    <input type="text" id="coupon" placeholder="e.g., RAILYATRA50">
+    <h3>Select Payment Method:</h3>
+    <div class="payment-options">
+      <label><input type="radio" name="pay" checked> UPI</label>
+      <label><input type="radio" name="pay"> PhonePe</label>
+      <label><input type="radio" name="pay"> Google Pay</label>
+      <label><input type="radio" name="pay"> Debit/Credit Card</label>
+    </div>
+    <p id="totalAmount"></p>
+    <button class="btn" onclick="generateTicket()">Pay & Generate Ticket</button>
+  </div>
+
+  <div class="container page" id="ticket">
+    <h2>🎉 Booking Confirmed!</h2>
+    <div id="ticketPreview">
+      <p><strong>Passenger:</strong> <span id="tpName"></span></p>
+      <p><strong>Train:</strong> <span id="tpTrain"></span></p>
+      <p><strong>Date:</strong> <span id="tpDate"></span></p>
+    </div>
+    <p>Your ticket is ready. Click below to open the PDF.</p>
+    <button class="btn" onclick="downloadPDF()">Download Ticket PDF</button>
+  </div>
+
+  <script>
+    let typingIndex = 0;
+    const typingPhrases = ["Search. Book. Travel.", "100% Indian Railway Booking.", "Your Journey Begins Here."];
+    function typeText() {
+      const el = document.getElementById("typingText");
+      const text = typingPhrases[typingIndex];
+      let i = 0;
+      el.innerHTML = "";
+      const interval = setInterval(() => {
+        el.innerHTML += text[i];
+        i++;
+        if (i === text.length) {
+          clearInterval(interval);
+          setTimeout(() => {
+            typingIndex = (typingIndex + 1) % typingPhrases.length;
+            typeText();
+          }, 2000);
+        }
+      }, 100);
+    }
+    typeText();
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function nextPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(page).classList.add('active');
+    }
+
+    function validateSearch() {
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      const date = document.getElementById("date").value;
+      const tickets = document.getElementById("tickets").value;
+      const error = document.getElementById("searchError");
+      if (!from || !to || !date || tickets < 1) {
+        error.textContent = "Please fill all fields properly.";
+      } else {
+        error.textContent = "";
+        nextPage('trains');
+      }
+    }
+
+    function validateTrain() {
+      const name = document.getElementById("passenger").value;
+      const error = document.getElementById("trainError");
+      if (!name.trim()) {
+        error.textContent = "Please enter passenger name.";
+      } else {
+        error.textContent = "";
+        updateAmount();
+        nextPage('payment');
+      }
+    }
+
+    function updateAmount() {
+      const tickets = parseInt(document.getElementById("tickets").value);
+      const coupon = document.getElementById("coupon").value.trim();
+      let price = 150 * tickets;
+      if (coupon === "RAILYATRA50") price *= 0.5;
+      document.getElementById("totalAmount").innerText = `Total Payable: ₹${price}`;
+    }
+
+    function generateTicket() {
+      alert("💸 Payment Successful!\nGenerating Ticket...");
+      document.getElementById("tpName").innerText = document.getElementById("passenger").value;
+      document.getElementById("tpTrain").innerText = document.getElementById("train").value;
+      document.getElementById("tpDate").innerText = document.getElementById("date").value;
+      nextPage('ticket');
+      setTimeout(() => {
+        downloadPDF();
+      }, 1000);
+    }
+
+    async function downloadPDF() {
+      const name = document.getElementById('passenger').value;
+      const from = document.getElementById('from').value;
+      const to = document.getElementById('to').value;
+      const date = document.getElementById('date').value;
+      const tickets = document.getElementById('tickets').value;
+      const train = document.getElementById('train').value;
+      const cls = document.getElementById('trainClass').value;
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(16);
+      doc.text("ConfirmTicket - Railway eTicket", 20, 20);
+      doc.setFontSize(12);
+      let y = 40;
+      doc.text(`Train: ${train}`, 20, y); y += 10;
+      doc.text(`Class: ${cls}`, 20, y); y += 10;
+      doc.text(`Passenger: ${name}`, 20, y); y += 10;
+      doc.text(`From: ${from}`, 20, y); y += 10;
+      doc.text(`To: ${to}`, 20, y); y += 10;
+      doc.text(`Date: ${date}`, 20, y); y += 10;
+      doc.text(`No. of Tickets: ${tickets}`, 20, y); y += 20;
+      doc.text("✅ Thank you for booking with ConfirmTicket!", 20, y);
+      doc.save("ConfirmTicket.pdf");
+    }
+  </script>
+</body>
+</html>
