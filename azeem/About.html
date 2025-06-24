@@ -1,0 +1,301 @@
+--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <link rel="icon" type="image/png" href="icon3.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        background-color: #091f22;
+      }
+
+      .section{
+        top: 10%;
+      }
+      .learn-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        padding: 150px 30px;
+        gap: 50px;
+        flex-wrap: wrap;
+        transition: 0.5s ease;
+        background: linear-gradient(#1f1c2c, #928dab,  #e0e0e0);
+      }
+      .container:hover{
+          scale: 1.1;
+          border-radius: 20px 80px;
+          box-shadow: 11px 11px 25px #5dd6e6;
+      }
+      
+      .card {
+        background: gainsboro;
+        padding: 20px;
+        height: 450px;
+        width: 350px;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.4s ease;
+         border: 2px solid black;
+         transition: 0.5s ease;
+         border-radius: 30px 80px;
+      }
+      .card h2 {
+        color: #091f22;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      .card p {
+        color: #333;
+        font-size: 15px;
+      }
+
+      .card:hover {
+        
+        box-shadow: 0 6px 15px rgb(2, 221, 250);
+       
+      }
+      
+
+      header {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        z-index: 99999999;
+        padding: 0vw 5vw;
+      }
+      nav {
+        background: transparent;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      nav.navbar {
+        padding: 40px 0;
+        position: relative;
+        text-align: center;
+      }
+      .nav-links {
+        display: inline-flex;
+        gap: 60px;
+        padding: 0;
+        position: relative;
+        list-style: none;
+      }
+
+    .nav-links a {
+      color: antiquewhite;
+      font-size: 18px;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+  .nav-links a:hover {
+    color: #2fe2e2;
+  }
+
+  
+ 
+
+  .nav-underline {
+  content: "";
+  position: absolute;
+  height: 3px;
+  background: linear-gradient(90deg,#0077b6, #00b4d8, #90e0ef, #ffffff);
+  background-size: 2000% 1000%;
+  animation: fireMove 1s linear infinite;
+  border-radius: 1px;
+  bottom: -2px;
+  transition: all 0.4s ease;
+  pointer-events: none;
+  transform-origin: right;
+        
+}
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <header>
+    <nav class="navbar">
+  <ul class="nav-links">
+    <li><a href="home.html" data-index="0">Home</a></li>
+    <li><a href="Index.html" data-index="1">Gallery</a></li>
+    <li><a href="About.html" data-index="2">About</a></li>
+    <li><a href="Contact.html" data-index="3">Contact</a></li>
+    <div class="nav-underline"></div>
+  </ul>
+</nav>
+
+      <div>
+      <Marquee Direction="left">
+          <span style="font-size: 24px; color: #D6D3D9; font-weight: bold; font-family: cursive;">
+        🦖 Welcome to the About Page – Your Trusted Source for Everything About Animals 🙋‍♂️
+            </span>
+      </Marquee>
+      </div>
+    </header>
+
+    <section class="learn-container">
+      <div class="card" data-aos="fade-up" data-aos-delay="400" data-aos-offset="400">
+        <h2> 1. 🐾 About Animals</h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+            Animals are an important part of our environment. <br>Every animal has its own role – some are kings of the jungle, while others are man’s best friends. <br>Some animals are pets that live in homes, and some are wild animals that live naturally in forests.
+            <br> The aim of this website is to provide you with simple and interesting information about all types of animals – their lifestyle, diet, habitat, and unique facts. <br>Whether you want to learn about lions, dogs, elephants, or birds – you’ll find everything here in one place.
+            <br>Understanding animals and respecting them is our responsibility so that we can maintain balance with nature.
+        </p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="400" data-aos-offset="400">
+        <h2>2. 🐘 Animal categories</h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          Animals are found all over the world, and they can be grouped into different categories based on their habitat, behavior, and relationship with humans. <br>Understanding these categories helps us learn more about how animals live and survive in their environments.
+          <br>Here are the main categories of <br>
+        Wild Animals – These animals live in forests, jungles, mountains, or deserts. <br>They are not tamed and survive on their own in nature. <br> Examples: Lion, Tiger, Elephant, Leopard. <br>
+        Domestic Animals – These are animals that live with or around humans. <br>They are often used for farming, transport, or companionship. <br>Examples: Cow, Horse, Goat, Buffalo.<br>
+        Pet Animals – These are animals kept at home for companionship and affection. <br>Examples: Dog, Cat, Rabbit, Parrot.
+        </p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="400" data-aos-offset="400">
+        <h2>3. 🌍 Habitats & lifestyle</h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          Every animal lives in a specific type of environment called a habitat, and their way of living is known as their lifestyle. <br>These two things are closely connected, as animals adapt their behaviors, body features, and survival methods based on where they live.
+           <br> There are many different types of habitats, such as:
+            <br>Forests – Home to wild animals like tigers, elephants, monkeys, and deer.
+            <br>Deserts – Hot and dry areas where animals like camels, snakes, and lizards live.
+            <br>Oceans & Rivers – Aquatic habitats for creatures like fish, whales, dolphins, and crabs.
+            <br>Mountains – Cold, rocky places where animals like snow leopards, yaks, and mountain goats survive.
+        </p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="400" data-aos-offset="400">
+        <h2>4. 🚨 Endangered species</h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          Endangered species are animals that are at risk of disappearing from the Earth forever. These species have very small populations left and may soon become extinct if we don’t take steps to protect them.<br>
+                There are many reasons why animals become endangered:
+                <br>Habitat loss – when forests and natural areas are destroyed by humans
+               <br> Hunting and poaching – illegal killing of animals for skin, bones, horns, etc.
+                <br>Pollution – chemicals in air, water, or land harm animal life
+                <br>Climate change – rising temperatures and changing weather affect animal survival
+                <br>Loss of food – when animals can't find enough to eat due to changes in nature
+        </p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="400" data-aos-offset="400">
+        <h2>5. 😸 Fun Animal Facts</h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          Animals are full of surprises! From their unique abilities to their strange habits, there's so much to learn that will make you say “Wow!” The Fun Animal Facts section is all about amazing, weird, and cool facts that you probably never knew.
+            Here, you'll discover things like:
+            Octopuses have three hearts and blue blood.
+            Elephants can’t jump, but they can recognize themselves in a mirror!
+            Cows have best friends and get stressed when they’re apart.
+            A group of flamingos is called a “flamboyance.”
+
+        </p>
+      </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400" data-aos-offset="400">
+        <h2>6.📚 Amazing Animal Records</h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          <li data-aos="fade-up" data-aos-delay="200">
+            Include cool facts like:
+          </li>
+          <li data-aos="fade-up" data-aos-delay="200">
+            The blue whale is the largest animal ever to live.
+            </li>
+            <li data-aos="fade-up" data-aos-delay="200">
+            A peregrine falcon is the fastest bird — it can dive at 300 km/h.
+          </li>
+            <br>Turritopsis dohrnii is a jellyfish known as "immortal" because it can revert to its younger state.
+            This section is fun and educational — showing how incredible and unique animals can be in their abilities, sizes, speeds, and more.
+
+        </p>
+      </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400" data-aos-offset="400">
+        <h2>7.🌱 Importance of Animals in Ecosystems</h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          
+Animals play a major role in keeping nature balanced. <br>Bees help in pollination, earthworms enrich the soil, predators like lions control prey populations, and scavengers like vultures clean up dead matter. Without animals, our ecosystem would fall apart. <br>This section explains how every animal, big or small, has a role to play in keeping the Earth alive and healthy.
+
+        </p>
+      </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400" data-aos-offset="400">
+        <h2>8.🛡️Human & Animal Relationship</h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          
+This section talks about how humans and animals live together, both in positive and harmful ways. <br>Animals help humans in many ways — pets give us love, farm animals provide food, and working animals like dogs and horses support humans in work. <br>But humans also affect animals through hunting, pollution, and habitat destruction. <br>This part will raise awareness about being responsible and kind toward all living beings.
+
+        </p>
+      </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400" data-aos-offset="400">
+        <h2>9.🧠 Animal Intelligence & Behavior</h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          
+Many animals show amazing intelligence and behavior. <br>For example, dolphins can understand commands and communicate with each other using clicks and whistles. <br>Elephants have long memories and can recognize themselves in mirrors. <br>Crows and parrots can solve puzzles and even mimic human speech. <br>This section can explain how animals think, learn, solve problems, show emotions, and interact with each other. <br>It helps us understand that animals are not just creatures — they are thinkers and feelers too.
+
+        </p>
+      </div>
+     
+  
+    
+      <!-- AOS Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1500,
+      once: true
+    })
+
+
+
+    //navbar
+    const links = document.querySelectorAll(".nav-links a");
+  const underline = document.querySelector(".nav-underline");
+  let lastIndex = 0;
+
+  links.forEach((link, index) => {
+    link.addEventListener("mouseenter", () => {
+      const currentLeft = link.offsetLeft;
+      const currentWidth = link.offsetWidth;
+      const previousLeft = links[lastIndex].offsetLeft;
+
+      underline.style.left = previousLeft + "px";
+      underline.style.width = "0";
+
+      setTimeout(() => {
+        underline.style.left = currentLeft + "px";
+        underline.style.width = currentWidth + "px";
+      }, 20);
+
+      lastIndex = index;
+    });
+  });
+
+  document.querySelector(".nav-links").addEventListener("mouseleave", () => {
+    underline.style.width = "0";
+  });
+
+
+
+  </script>
+  </body>
+</html>

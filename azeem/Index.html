@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Animal World</title>
+    <link rel="icon" type="image/png" href="icon3.png">
+
+    <!-- AOS Library for Animation -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url("https://images.unsplash.com/photo-1536999526918-49b5b164e926?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        overflow: hidden;
+      }
+
+      .hero-text {
+        color: antiquewhite;
+        font-size: 10rem;
+        font-weight: 700;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        background: linear-gradient(90deg, #344e41, #ffffff, #344e41);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding: 20px 40px;
+        border-radius: 12px;
+        transition: tranform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeln 2s ease-in-out;
+        height: fit-content;
+        width: 100%;
+        position: absolute;
+        
+        top: 15%;
+        transform: translate(-50%, 0);
+        background-clip: text;
+        color: transparent;
+        animation: animate 10s linear infinite;
+      }
+
+      .hero-text{
+
+            background: url('https://images.unsplash.com/photo-1604937455095-ef2fe3d46fcd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y29sb3JmdWwlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww');
+            background-size: cover;
+            background-clip: text;
+            color: transparent;
+            animation: animate 10s linear infinite;
+        }
+  
+
+        @keyframes animate{
+            to{
+                background-position-x: -2000px;
+
+            }
+        }
+     
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        scroll-behavior: smooth;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        background-size: cover;
+      }
+
+      .container {
+        width: 500px;
+        border-radius: 10px;
+        height: 200px;
+        background-color: grey;
+        display: flex;
+        overflow: hidden;
+        position: absolute;
+        bottom: 2%;
+        right: 2%;
+        border: 2px solid black;
+        cursor: pointer;
+      }
+
+      h2 {
+        color: antiquewhite;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 6px 12px;
+        position: relative;
+        transition: 0.3s;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      .child {
+        flex: 1;
+        height: 100%;
+        transition: flex 0.5s ease;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        color: rgb(245, 85, 205);
+        padding: 5px;
+        
+      }
+
+      .child p {
+        transition: opacity 0.5s ease;
+        opacity: 0;
+      }
+
+      .child.active {
+        flex: 5;
+      }
+
+      .child1 {
+        background-image: url("https://images.unsplash.com/photo-1575550959106-5a7defe28b56?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      }
+
+      .child2 {
+        background-image: url("https://images.unsplash.com/photo-1593946460607-d1570da6268f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      }
+
+      .child3 {
+        background-image: url("https://images.unsplash.com/photo-1504006833117-8886a355efbf?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      }
+
+      .child4 {
+        background-image: url("https://images.unsplash.com/photo-1564760055775-d63b17a55c44?q=80&w=1477&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      }
+      .child5 {
+        background-image: url("https://images.unsplash.com/photo-1463436755683-3f805a9d1192?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        
+      }
+         .child6 {
+        background-image: url("https://images.unsplash.com/photo-1591561582301-7ce6588cc286?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        
+      }
+
+
+      .content {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2vw;
+        max-width: 500px;
+        gap: 20px;
+        background: #000000;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 1) 13%,
+          rgba(31, 31, 26, 0) 100%
+        );
+        opacity: 0;
+        transition: opacity 1s ease;
+        align-items: flex-start;
+      }
+
+      .content h1 {
+        font-size: 5rem;
+        color: white;
+      }
+
+      .content p {
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      button {
+        background-color: #006d77;
+        color: black;
+        border: #000000;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px #80b918;
+        all: calc(4);
+        background-color: #e29578;
+      }
+
+      header {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        z-index: 99999999;
+        padding: 0vw 5vw;
+      }
+
+      nav {
+        background: transparent;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      nav a {
+        color: #a8dadc;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 6px 12px;
+        position: relative;
+        transition: 0.3s;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 3px;
+        left: 0;
+        bottom: 0;
+        background: linear-gradient(90deg,#1b263b, #778da9, #e0e1dd, #ffffff);
+        transform-origin: right;
+        transition: transform 0.3s ease-in-out;
+        bottom: -1px;
+        width: 100%;
+        height: 3px;
+        transform: scaleX(0);
+      }
+
+      nav a:hover::after {
+      
+          transform: scaleX(1);
+          transform-origin: left;
+          width: 100%;
+    }
+      
+
+      nav a:hover {
+        color: #ffddd2;
+      }
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .animal-info {
+        position: absolute;
+        right: 2%;
+        top: 10%;
+        width: 500px;
+        height: 400px;
+        overflow-y: scroll;
+        background-color: rgba(54, 54, 54, 0.76);
+        border-radius: 10px;
+        padding: 20px;
+        opacity: 0;
+        font-size: 1.5rem;
+        color: white;
+        transition: box-shadow 0.4s ease;
+      }
+
+      .animal-info:hover {
+        box-shadow: 0 0 20px rgb(114, 192, 51);
+      }
+
+
+      .search-container {
+  text-align: center;
+  margin: 30px 0;
+}
+#searchInput {
+  padding: 10px 15px;
+  width: 280px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+
+      /* cursor ponit */
+      ::-webkit-scrollbar {
+        width: 3px;
+        border-radius: 15px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #00000056;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      /* Cursor Dot */
+      .cursor-dot,
+      .cursor-dot-2,
+      .cursor-dot-3,
+      .cursor-dot-4,
+      .cursor-dot-5{
+        position: relative;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        background-color: #d8f3dc;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        pointer-events: none; 
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+        z-index: 9999999999999999999;
+      }
+
+      .cursor-dot-2{
+        background-color: #b7e4c7;
+        width: 16px;
+        height: 16px;
+        border: none;
+        transition: transform 0.2s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-3{
+        background-color: #95d5b2;
+        width: 14px;
+        height: 14px;
+        border: none;
+        transition: transform 0.3s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-4{
+        background-color: #74c69d;
+        width: 11px;
+        height: 11px;
+        border: none;
+        transition: transform 0.4s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-5{
+        background-color: #52b788;
+        width: 8px;
+        height: 8px;
+        border: none;
+        transition: transform 0.5s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      
+      .cursor-dot img {
+        width: 50%;
+      }
+
+      body:hover .cursor-dot,
+      body:hover .cursor-dot-2,
+      body:hover .cursor-dot-3,
+      body:hover .cursor-dot-4,
+      body:hover .cursor-dot-5{
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body data-aos="fade-up" data-aos-delay="200">
+    <div class="hero-text" data-aos="fade-up" data-aos-delay="300">Welcome to <br/><span style="font-size: 7rem" >Animal world</span>
+    </div>
+    <header>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="Index.html">Gallery</a>
+        <a href="About.html">About</a>
+        <a href="Contact.html">Contact</a>
+        
+      </nav>
+    </header>
+    <div class="cursor-dot js-cursor-dot"></div>
+    <div class="cursor-dot-2 js-cursor-dot-2"></div>
+    <div class="cursor-dot-3 js-cursor-dot-3"></div>
+    <div class="cursor-dot-4 js-cursor-dot-4"></div>
+    <div class="cursor-dot-5 js-cursor-dot-5"></div>
+    <section class="animal-info"></section>
+
+    <div class="content" data-aos="fade-up" data-aos-delay="200">
+      <h1>Lion</h1>
+      <p>
+        The lion is a powerful wild animal, often called the "King of the Jungle." It lives in groups called prides and is known for its strength and loud roar. Lions are bold and have a dominant nature. 🦁
+      </p>
+      <button class="button">More</button>
+    </div>
+    <div class="content">
+      <h1>Polar Bear</h1>
+      <p>
+        The polar bear is a large carnivorous animal that lives in the cold Arctic regions. It has thick white fur and is a strong swimmer. Polar bears are usually calm but powerful hunters.🐻‍❄️
+      </p>
+      <button class="button">More</button>
+    </div>
+    <div class="content">
+      <h1>Squirrel</h1>
+      <p>
+        The squirrel is a small, fast, and clever rodent. It lives mostly in trees and is known for its bushy tail and habit of collecting nuts. Squirrels are active, playful, and alert animals.🐿️
+      </p>
+      <button class="button">More</button>
+    </div>
+    <div class="content">
+      <h1>Elephant</h1>
+      <p>
+        The elephant is the largest land animal on Earth. It is known for its long trunk, big ears, and strong memory. Elephants are gentle giants that live in groups and have emotional, social behavior. 🐘
+      </p>
+      <button class="button">More</button>
+    </div>
+     <div class="content">
+      <h1>Red Panda</h1>
+      <p>
+        The red panda is a small, furry mammal known for its reddish-brown fur and bushy tail. It lives in trees and is mostly active at night. Its face looks like a cute mask, and it mainly eats bamboo.🐼
+      </p>
+      <button class="button">More</button>
+    </div>
+     <div class="content">
+      <h1>Rabbit</h1>
+      <p>
+        Rabbits are fluffy little hoppers with long ears, twitchy noses, and tons of cuteness 🐇
+      </p>
+      <button class="button">More</button>
+    </div>
+      
+      <div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search animals like 'lion', 'rabbit'...">
+</div>
+
+
+    <div class="container">
+      <div class="child1 child active">
+        <p style="color: #000000; font-weight: bold;">Lion</p>
+      </div>
+      <div class="child2 child">
+        <p style="color: #000000; font-weight: bold;">Polar Bear</p>
+      </div>
+      <div class="child3 child">
+        <p style="color: #38f8de; font-weight: bold;">Squirrel</p>
+      </div>
+      <div class="child4 child">
+        <p style="color: #62f7e3; font-weight: bold;">Elephant</p>
+      </div>
+      <div class="child5 child">
+        <p style="color: #8fe5cc; font-weight: bold;">Red Panda</p>
+      </div>
+      <div class="child6 child">
+        <p style="color: black; font-weight: bold;">Rabbit</p>
+      </div>
+    </div>
+
+    <script>
+      const childEls = document.querySelectorAll(".child");
+      const homeText = document.querySelector(".hero-text");
+      const animalInfo = document.querySelector(".animal-info");
+      const clickBtnEl = document.querySelectorAll(".button");
+
+      const imgList = [
+        "https://images.unsplash.com/photo-1575550959106-5a7defe28b56?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1593946460607-d1570da6268f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1504006833117-8886a355efbf?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?q=80&w=1477&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1463436755683-3f805a9d1192?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",      
+        "https://images.unsplash.com/photo-1591561582301-7ce6588cc286?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      ];
+
+      const animalInfoArr = [
+        "Lions are mainly found in Africa and in some parts of India (Gir Forest).They are carnivores, meaning they eat meat. Their average lifespan is around 10 to 14 years. The male lion has a large, thick mane that gives it a majestic look. Lions live in groups called prides, which usually have one or two males, several females, and their cubs. Lions rest most of the day and usually hunt at night. Their roar can be heard from up to 8 kilometers away. They use their sharp claws and strong teeth to hunt animals like deer, buffalo, and zebra. Lions play an important role in nature by keeping the animal population in balance",
+        "Polar bears are found mainly in the Arctic region, including countries like Canada, Greenland, Norway, and Russia. They are carnivores and mostly eat seals. Their thick white fur and a layer of fat help them survive in freezing temperatures. They can swim for long distances in icy water and use their strong sense of smell to find food. Adult polar bears can weigh between 300 to 700 kg, and their average lifespan is around 20 to 25 years. They are solitary animals and usually travel alone, except when a mother is raising her cubs. Polar bears are endangered due to melting ice caused by climate change, which affects their ability to hunt and survive.",
+        "Squirrels are found in forests, gardens, and urban areas all around the world. The red squirrel, seen in the image, is mostly found in Europe and parts of Asia. Squirrels are omnivores, meaning they eat both plants and small insects, but mostly they feed on nuts, fruits, seeds, and berries. They use their sharp claws to climb trees quickly and store food for winter. Squirrels are known for their excellent memory, which helps them find the food they hide. Their bushy tail helps them balance and stay warm. They live for around 6 to 12 years depending on their environment. Squirrels are quick, curious, and often seen jumping from tree to tree.",
+        "Elephants are found mainly in Africa and Asia. African elephants are larger and have bigger ears compared to Asian elephants. They are herbivores and eat grass, leaves, fruits, and bark, consuming over 100 kg of food daily. Their trunks are used for breathing, smelling, drinking water, and picking up things. Elephants live in herds, led by the oldest female (matriarch). They are highly intelligent and can feel emotions like joy, grief, and compassion. Elephants play a key role in their environment by shaping forests and spreading seeds. Their average lifespan in the wild is 60–70 years. Sadly, elephants are threatened by poaching and habitat loss.",
+        "The red panda is found in the forests of the Himalayas, especially in Nepal, India, Bhutan, Myanmar, and China. Its scientific name is Ailurus fulgens. It is a mammal and mostly eats bamboo, but it also eats fruits, insects, and small animals. The red panda has a body similar in size to a domestic cat, with thick reddish-brown fur and a long, ringed tail that helps with balance and warmth. It is usually solitary and is most active during the night. Sadly, the red panda is endangered, mainly due to habitat loss and illegal hunting.",
+        "Rabbits are small mammals known for their soft fur, long ears, and adorable twitching noses. Found in meadows, forests, and even deserts, they love munching on grass, veggies, and leafy greens. Rabbits are fast runners, and they use their strong hind legs to hop away from danger. They are social and playful animals, often seen grooming each other or digging little burrows. Their cuteness, gentle behavior, and expressive faces make them one of the most loved animals in the world. 🥕🐇",
+      ];
+
+      clickBtnEl.forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          if (Number(animalInfo.style.opacity)) {
+            animalInfo.style.opacity = 0;
+          } else {
+            animalInfo.style.opacity = 1;
+          }
+
+          animalInfo.innerHTML = `${animalInfoArr[index]}`;
+        });
+      });
+
+      // Following dot logic
+      const dot = document.querySelector(".js-cursor-dot");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot.style.transform = `translate(${x - dot.offsetWidth / 2}px, ${y - dot.offsetHeight / 2}px)`;
+      });
+
+      const dot2 = document.querySelector(".js-cursor-dot-2");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot2.style.transform = `translate(${x - dot2.offsetWidth / 2}px, ${y - dot2.offsetHeight / 2}px)`;
+      });
+      const dot3 = document.querySelector(".js-cursor-dot-3");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot3.style.transform = `translate(${x - dot3.offsetWidth / 2}px, ${y - dot3.offsetHeight / 2}px)`;
+      });
+      const dot4 = document.querySelector(".js-cursor-dot-4");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot4.style.transform = `translate(${x - dot4.offsetWidth / 2}px, ${y - dot4.offsetHeight / 2}px)`;
+      });
+      const dot5 = document.querySelector(".js-cursor-dot-5");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot5.style.transform = `translate(${x - dot5.offsetWidth / 2}px, ${y - dot5.offsetHeight / 2}px)`;
+      });
+
+
+
+
+      childEls.forEach((child, index) => {
+        child.addEventListener("click", () => {
+          homeText.classList.add("hidden");
+          animalInfo.style.opacity = 0;
+          removeActive();
+          child.classList.add("active");
+          document.body.style.backgroundImage = `url(${imgList[index]})`;
+          document.querySelectorAll(".child p")[index].style.opacity = 1;
+          document.querySelectorAll(".content")[index].style.opacity = 1;
+          document.querySelectorAll(".content")[index].style.display = "flex";
+        });
+      });
+
+      removeActive();
+
+      function removeActive() {
+        childEls.forEach((child, index) => {
+          child.classList.remove("active");
+          document.querySelectorAll(".child p")[index].style.opacity = 0;
+          document.querySelectorAll(".content")[index].style.opacity = 0;
+          document.querySelectorAll(".content")[index].style.display = "none";
+        });
+      }
+
+       </script>
+        
+       <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 500 });
+  
+    AOS.init({
+      duration: 1500,
+      once: true
+    })
+
+//navbar
+    const links = document.querySelectorAll(".nav-links a");
+  const underline = document.querySelector(".nav-underline");
+  let lastIndex = 0;
+
+  links.forEach((link, index) => {
+    link.addEventListener("mouseenter", () => {
+      const currentLeft = link.offsetLeft;
+      const currentWidth = link.offsetWidth;
+      const previousLeft = links[lastIndex].offsetLeft;
+
+      underline.style.left = previousLeft + "px";
+      underline.style.width = "0";
+
+      setTimeout(() => {
+        underline.style.left = currentLeft + "px";
+        underline.style.width = currentWidth + "px";
+      }, 20);
+
+      lastIndex = index;
+    });
+  });
+
+  document.querySelector(".nav-links").addEventListener("mouseleave", () => {
+    underline.style.width = "0";
+  });
+
+    </script>
+  </body>
+</html>

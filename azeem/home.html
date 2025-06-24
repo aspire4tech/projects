@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <title>Animal World</title>
+  <link rel="icon" type="image/png" href="icon3.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #a8dadc;
+      --text: #fefae0;
+      --card-bg: #003049;
+      --card-hover: linear-gradient(90deg, #4a5759,#b0c4b1);
+      --accent: #ff6600;
+    } 
+    [data-theme='dark'] {
+      --bg: #1b263b;
+      --text: #0c1113;
+      --card-bg: linear-gradient(90deg, #2a9d8f);
+      --card-hover: #778da9;
+      --accent: #ff0000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.4s, color 0.4s;
+      background-size: cover;
+      animation: fadeIn 1.5s ease-in;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    header {
+      padding: 10px 1%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fefae0;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 30px;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0;
+      
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      font-weight: 800;
+      background: linear-gradient(to right, #ff6600, #ff00cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeIn 1.5s ease-in;
+      font-family: cursive;
+      animation: heroh1 3s ease-in-out infinite;
+    }
+
+    @keyframes heroh1{
+      0%, 100%{
+        transform: translateY(0);
+      }
+      50%{
+        transform: translateY(10%);
+      }
+
+    }
+
+    .hero p {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #777;
+      animation: fadeIn 2s ease-in-out;
+      font-weight: bolder;
+      font-family: cursive;
+      
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 50px 5%;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      border-radius: 30px 80px;
+      box-shadow: 8px 8px 15px  #1b263b;
+      border: 3px solid black;
+      transition: all 0.3s ease;
+      
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      transform: translateY(-8px);
+      border-radius: 80px 30px;
+      border: 3px solid black;
+     transition: box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+    color: #222;
+    }
+    
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .card p {
+      font-size: 15px;
+    }
+    .card a{
+      text-decoration: none;
+      color: #cdb4db;
+      font-family: cursive;
+      
+    }
+
+    .div a{
+      text-decoration: none;
+    }
+
+    .lottie {
+      width: 351px;
+      margin: 30px auto;
+    }
+
+
+/* Chatbot button */
+    .chatbot-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #7f4f24;
+      color: white;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #b370da;
+      z-index: 1000;
+      animation: float 3s  ease-in-out infinite ;
+    }
+    @keyframes float{
+      0%, 100% {
+        transform: translateY(0);
+      }
+        50%{
+          transform:translateY(-10px) ;
+        }
+      
+    }
+
+    .chatbot-button:hover{
+      scale: 1.1;
+      transition: 0.3s;
+      border-radius: 70% 10% 70% 10% / 10% 70% 10% 70%;
+      box-shadow: 0 0 10px #161418;
+
+    }
+
+    /* Chatbot box */
+    .chatbot-box {
+      position: fixed;
+      bottom: 90px;
+      right: 30px;
+      width: 320px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      max-height: 400px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    }
+
+    .chat-header {
+      background-color: #9a8c98;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-family: cursive;
+      
+    }
+
+    .chat-messages .bot,
+    .chat-messages .user {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: 80%;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .chat-messages .bot {
+      align-self: flex-start;
+      background-color: #222;
+      font-family: cursive;
+      
+    }
+
+    .chat-messages .user {
+      align-self: flex-end;
+      background-color: #444;
+      max-width: 75%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      
+      white-space: normal;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-weight: bolder;
+    }
+
+    .chat-input button {
+      background: #003049;
+      color: rgba(255, 255, 255, 0.897);
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bubble {
+    animation: pop 0.3s ease;
+}
+@keyframes pop {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.message.user { justify-content: flex-end; }
+.message.bot { justify-content: flex-start; }
+
+.avatar {
+    font-size: 24px;
+    margin: 5px;
+}
+
+.bubble {
+    max-width: 100%;
+    background: #1e1e1e;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 15px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 15px;
+}
+
+
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 14px;
+      color: #000000;
+      font-weight: bold;
+      font-family: cursive;
+      text-align: center;
+      font-size: 15px; 
+      position: absolute;
+      left: 500px;
+      top: 730px;
+      padding: 15px; 
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+
+      /* width */
+      ::-webkit-scrollbar {
+        width: 3px;
+        border-radius: 15px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #00000056;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      /* Cursor Dot */
+      .cursor-dot,
+      .cursor-dot-2,
+      .cursor-dot-3,
+      .cursor-dot-4,
+      .cursor-dot-5{
+        position: relative;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        background-color: #10214b;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        pointer-events: none; 
+        /* Prevents interference with clicks */
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+        /* Ensures visibility on similar colors */
+        z-index: 9999999999999999999;
+      }
+
+      .cursor-dot-2{
+        background-color: #34a0a4;
+        width: 14px;
+        height: 14px;
+        border: none;
+        transition: transform 0.2s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-3{
+        background-color: #d7bd88;
+        width: 12px;
+        height: 12px;
+        border: none;
+        transition: transform 0.3s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-4{
+        background-color: #d0c3ba;
+        width: 10px;
+        height: 10px;
+        border: none;
+        transition: transform 0.4s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-5{
+        background-color: #ebe7e1;
+        width: 8px;
+        height: 8px;
+        border: none;
+        transition: transform 0.5s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      
+      .cursor-dot img {
+        width: 50%;
+      }
+
+      body:hover .cursor-dot,
+      body:hover .cursor-dot-2,
+      body:hover .cursor-dot-3,
+      body:hover .cursor-dot-4,
+      body:hover .cursor-dot-5{
+        opacity: 1;
+      }
+
+      @keyframes typing{
+      0%, 100% {
+        transform: translateY(0);
+      }
+        50%{
+          transform:translateY(-10px) ;
+        }
+      
+    }
+
+    
+/* Preloader Full Screen Overlay */
+#preloader {
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100%;
+      background-color: black;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: none;
+      opacity: 1;
+
+      
+}
+/* Loader Spinner */
+.loader {
+  border: 10px ridge #f3f3f3;
+  border-top: 10px double #ff6600c7;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body >
+
+<div id="preloader">
+  <div class="loader"></div>
+</div>
+
+<div id="main-content" style="display: none;"></div>
+
+
+  <header>
+    <h1 id="typingText" style="font-size: 30px; font-family: cursive; font-weight: bold; color: #fdf0d5; animation: typing 3s ease-in-out infinite;"></h2>
+  
+
+
+    
+    <div class="theme-toggle" onclick="toggleTheme()">🌓</div>
+  </header>
+
+  <section class="hero">
+    <h1 id="intro-text">Explore the World of Animals</h1>
+    <p>🐾 Journey through jungles, oceans, and skies — discover the wonders of wildlife.</p>
+    <div class="lottie" id="lottie"></div>
+  </section>
+
+   <div class="cursor-dot js-cursor-dot"></div>
+    <div class="cursor-dot-2 js-cursor-dot-2"></div>
+    <div class="cursor-dot-3 js-cursor-dot-3"></div>
+    <div class="cursor-dot-4 js-cursor-dot-4"></div>
+    <div class="cursor-dot-5 js-cursor-dot-5"></div>
+    <section class="animal-info"></section>
+
+  <section class="cards">
+    <div class="card">
+      <h3><a href="Index.html">Gallery</a></h3>
+      <p>Explore animal habitats, behavior, and untold wonders of wildlife.</p>
+    </div>
+    <div class="card">
+      <h3><a href="About.html">About</a></h3>
+      <p>Learn about fascinating species and their unique lifestyles</p>
+    </div>
+    <div class="card">
+      <h3><a href="Contact.html">Contact</a></h3>
+      <p>Connect with us to support wildlife awareness and conservation.</p>
+    </div>
+  </section>
+
+  <div>
+ 
+</div>
+
+  <!-- Chat Button -->
+  <button class="chatbot-button" onclick="toggleChat()">💬</button>
+
+  <!-- Chatbox -->
+  <div class="chatbot-box" id="chatbox">
+    <div class="chat-header" style="color: #000000;">My Wild Bot 🦊</div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="bot">💡 Type a prompt</div>
+      
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type an animal name..." onkeypress="handleKey(event)" />
+
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+
+
+  <footer>
+  © 2024 | Created by Shaikh Azeem – CABA-MDTP Diploma July 2024<br>
+Dedicated to learning and exploring the amazing world of animals.
+</footer>
+</div>
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", current === "dark" ? "light" : "dark");
+    }
+
+    var animation = bodymovin.loadAnimation({
+      container: document.getElementById('lottie'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://assets9.lottiefiles.com/packages/lf20_z01bika0.json'});
+
+
+    // Intro text animation
+    const intro = document.getElementById('intro-text');
+    intro.style.opacity = 0;
+    setTimeout(() => {
+      intro.style.transition = 'opacity 1.2s';
+      intro.style.opacity = 1;
+    }, 300);
+
+    
+//typin effect
+  const text = "Nature Unleashed";
+  let i = 0;
+  const typingText = document.getElementById("typingText");
+
+  function typeEffect() {
+    if (i < text.length) {
+      typingText.innerHTML += text.charAt(i);
+      i++;
+    } else {
+      // Reset after complete typing
+      i = 0;
+      typingText.innerHTML = "";
+    }
+    setTimeout(typeEffect, 200); // 1 second delay
+  }
+  window.onload = typeEffect;
+
+
+  
+      // Following dot logic
+      const dot = document.querySelector(".js-cursor-dot");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot.style.transform = `translate(${x - dot.offsetWidth / 2}px, ${y - dot.offsetHeight / 2}px)`;
+      });
+
+      const dot2 = document.querySelector(".js-cursor-dot-2");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot2.style.transform = `translate(${x - dot2.offsetWidth / 2}px, ${y - dot2.offsetHeight / 2}px)`;
+      });
+      const dot3 = document.querySelector(".js-cursor-dot-3");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot3.style.transform = `translate(${x - dot3.offsetWidth / 2}px, ${y - dot3.offsetHeight / 2}px)`;
+      });
+      const dot4 = document.querySelector(".js-cursor-dot-4");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot4.style.transform = `translate(${x - dot4.offsetWidth / 2}px, ${y - dot4.offsetHeight / 2}px)`;
+      });
+      const dot5 = document.querySelector(".js-cursor-dot-5");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot5.style.transform = `translate(${x - dot5.offsetWidth / 2}px, ${y - dot5.offsetHeight / 2}px)`;
+      });
+
+//chat bot logic
+
+function toggleChat() {
+      const chatbox = document.getElementById('chatbox');
+      chatbox.style.display = chatbox.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("chatInput");
+      const msg = input.value.trim().toLowerCase().replace(/[^a-z\s]/g, '');
+      
+
+
+      if (!msg) return;
+
+      appendMessage("user", msg);
+      input.value = "";
+
+      setTimeout(() => {
+        respondToMessage(msg.toLowerCase());
+      }, 600);
+    }
+
+    function appendMessage(type, text) {
+      const container = document.getElementById("chatMessages");
+      const msg = document.createElement("div");
+      msg.className = type;
+      msg.textContent = text;
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function respondToMessage(msg) {
+      const responses = {
+        hello: "👋 Hello Assalamualaikum! How can I help you with animals today?",
+        lion: "🦁 The lion is the king of the jungle, living in prides and ruling savannas.",
+        walekumassalam: "👋 Hi I'm ready with wild facts — ask me about any animal! 🦁🐘",
+        elephant: "🐘 The elephant is the largest land animal, gentle and intelligent.",
+        zebra: "🦓 Zebras are striped grazers from Africa, living in herds.",
+        penguin: "🐧 Penguins are cold-loving, flightless birds that swim like fish.",
+        cheetah: "🐆 Cheetahs are the fastest land animals, known for their incredible speed.",
+        bear: "🐻 Bears are strong mammals that live in forests and mountains. Some hibernate in winter.",
+        ok: "👍 Got it buddy! Ask me anything wild next! 🐾😄",
+        giraffe: "🦒 Giraffes are the tallest land animals, famous for their long necks and spotted bodies.",
+        wolf: "🐺 Wolves are intelligent pack hunters and ancestors of domestic dogs.",
+        kangaroo: "🦘 Kangaroos hop using their strong legs and carry babies in pouches.",
+        "how are you bot": "I’m wild and wired! 🐾 Ready to explore with you! 🌍",
+        panda: "🐼 Pandas are gentle bears from China who love eating bamboo.",
+        "tell me best animal list" : "Here’s my top wild squad! 🐾🦁 Lion, 🐘 Elephant, 🐼 Panda, 🐇 Rabbit, 🐿️ Squirrel, 🐻‍❄️ Polar Bear  — sab iconic hai!",
+        deer: "🦌 Deer are graceful herbivores with antlers, living in forests.",
+        fox: "🦊 Foxes are clever and quick, often active at night.",
+        owl: "🦉 Owls are nocturnal birds with sharp vision and silent flight.",
+        monkey: "🐒 Monkeys are playful, intelligent primates who live in trees.",
+        dolphin: "🐬 Dolphins are smart marine animals that live in groups and communicate by sound.",
+        snake: "🐍 Snakes are legless reptiles, some venomous and found in various habitats.",
+        "tiger": "🐯 The tiger is a solitary predator with majestic stripes, found in forests.",
+        "elephant":"🐘 Elephants are the largest land animals. They are intelligent, social, and have excellent memory. Their trunks are super versatile!",
+      "panda":"🐼 Pandas are cute, lazy bamboo lovers found mainly in China. They are gentle and mostly chill all day!",
+      "squirre":"🐿️ Squirrels are small, quick, and love collecting nuts. You’ll often spot them zipping up trees!",
+      "rabbit":"🐇 Rabbits are fast, fluffy, and love hopping around! They’re known for their big ears and cute twitchy noses.",
+      "polar bear":"🐻‍❄️ Polar bears live in the icy Arctic and are powerful swimmers. Despite their cuddly look, they’re strong and smart hunters!",
+      "red panda":" Red pandas are small, tree-dwelling mammals with reddish fur and a long, bushy tail. They’re playful, shy, and mostly found in the Himalayas!",
+
+  "who is shaikh azeem":"🧠 Shaikh Azeem is the creator of this website — a passionate learner and web developer who's been exploring the world of code and creativity. 🚀He's currently pursuing the CABA-MDTP Diploma and loves making interactive informative web projects! 🌟",
+  "tell me about shaikh azeem": "🧠 Shaikh Azeem is the creator of this website — a passionate learner and web developer currently pursuing the CABA-MDTP Diploma.",
+  "shaikh azeem": "🧠 This site was created by Shaikh Azeem — a CABA-MDTP diploma student with a passion for web design and innovation.",
+  "who created this site": "🧠 This site was created by Shaikh Azeem — a CABA-MDTP diploma student with a passion for web design and innovation.",
+  "who is the developer of this site": "🧠 Shaikh Azeem is the developer — skilled in HTML, CSS, and JavaScript, and always eager to learn more.",
+  "who built this project": "🧠 This project was built by Shaikh Azeem as part of his learning journey during the CABA-MDTP diploma.",
+  "do you know shaikh azeem": "🧠 Absolutely! Shaikh Azeem is the brilliant mind behind this awesome site.",
+  "shaikh azeem kon hai": "🧠 Shaikh Azeem is the developer of this site, pursuing the CABA-MDTP course and passionate about technology.",
+  "about shaikh azeem": "🧠 He is a self-motivated student and web creator behind this interactive site.",
+  "site creator": "🧠 The site was created by Shaikh Azeem, a student of CABA-MDTP July 2024 batch.",
+  "what's up": "Just swinging through the animal kingdom! 🐒🌴",
+  "recommend me one": "You should definitely check out the platypus! It's super unique! 🦆🦫",
+  "show something rare": "Try the aye-aye — a weird lemur with a long middle finger! 🐒☝️",
+  "scary animal": "You might want to avoid the anglerfish at night! 😱🐟",
+  "tell me something new": "Did you know crocodiles can go months without eating? 🐊",
+  "i'm bored": "Let’s spice it up — search for the ‘fainting goat’ 😂🐐",
+  "give me random": "Sure! Ever heard of the quokka? The happiest animal alive 😁🦘",
+  "what's trending": "Red pandas and capybaras are viral these days! 🐼📈",
+  "top 3 animals": "Hmm… Lion, Owl, and Octopus. Strength, wisdom, and smarts! 🦁🦉🐙",
+  "do you bite": "Nope! I'm all text and kindness 🐶❤️",
+  "animal emoji": "Here you go: 🐯🦓🐢🦉🦄",
+  "hidden gem": "Look up the ‘okapi’ — it’s a giraffe-zebra hybrid! 🦒🦓",
+  "mystery animal": "Ever seen a pink dolphin? Yup, it exists in the Amazon 🐬🌸",
+  "quick fact": "Sharks existed before trees. Mind blown? 🤯🦈",
+  "what's your name": "I'm WildBot — your guide to the animal jungle! 🐾",
+  "i love you": "Aww! I love curious explorers too 💙🦁",
+  "scariest sound": "Try googling ‘Tasmanian devil scream’ 😨🎧",
+  "favourite": "I’m biased toward the owl — wise and chill 🦉✨",
+  "top 5 pets": "Dog, cat, rabbit, hamster, parrot — easy to love! 🐶🐱🐹🐰🦜",
+  "roar": "Whoa! I felt that! 🦁 You sound like a true beast!",
+  "meow": "Did someone summon a cat? 🐱 Purr-fect timing!",
+  "oink": "Pig spotted! 🐷 You’re on a roll!",
+  "moo": "That's an udderly amazing sound! 🐄",
+  "woof": "Woof woof! Doggo vibes activated 🐕✨",
+  "chirp": "Bird mode: ON 🐦",
+  "grr": "Someone's channeling their inner bear 🐻!",
+  "fast animal": "Cheetahs win the race, paws down 🐆💨",
+  "sleepy one": "Sloths sleep 15-20 hours a day — goals! 😴🦥",
+  "animal with horn": "Narwhals — the unicorns of the sea! 🦄🐋",
+  "jungle king": "The lion rules with style and roar 🦁👑",
+  "how do they talk": "Animals use sounds, movements, and scents 🐾🗣️",
+  "what they eat": "Depends! Carnivores, herbivores, omnivores — oh my!",
+  "big teeth": "Hippos have the biggest animal teeth — seriously! 🦷🦛",
+  "talking bird": "Parrots can mimic human words pretty well 🦜🗣️",
+  "cutest baby": "Baby otters holding hands is too much 🥺🦦",
+  "emoji quiz": "🐾+🦁+👑 = ? (Answer: The Lion King!)",
+  "rainforest animal": "Toucan, jaguar, poison dart frog — vibrant and wild 🌳🐆",
+  "desert animal": "Camels dominate the dunes 🐫🌵",
+  "ice animal": "Say hi to the arctic fox 🦊❄️",
+  "funny noise": "Try listening to the goat that screams like a human 😂🐐",
+  "how to protect": "Support wildlife conservation and say NO to poaching 🛑🐘",
+  "extinct": "Dodos may be gone, but not forgotten 🕊️💔",
+  "you alive": "Alive in data, powered by curiosity ⚡🐾",
+  "dance animal": "Peacocks do quite the showy dance 🕺🦚",
+  "assalamualaikum": "Walekum Assalam! 🐾 Welcome to my jungle — where the wild talks back! 🌿🦁",
+  "confused": "No worries! Type any animal name, I’ll handle the rest 🤖",
+  "party animal": "Raccoons are sneaky party crashers! 🎉🦝",
+  "who are you":"I'm WildBot — your digital buddy from the animal kingdom! 🐾 Here to share wild facts, fun vibes, and furry wisdom!",
+  "hi":"Hey there! Welcome to the wild zone — what animal adventure are we on today 🐾🌍",
+  
+  "prompt": "hello,,,,, assalamualaikum,,,,, lion,,,,,  elephant,,,,,  zebra,,,,, who is khaja sir,,,,,,  site creator,,,,,  tell me about khaja sir,,,,,, khaja sir,,,,,,   thanks,,,,,, thank you,,,,,, how are animals useful,,,,,, who is the king of water,,,,,, can animals talk,,,,,, animal with long neck,,,,,, animal with spots,,,,,,  who is shaikh azeem,,,,, tell me about shaikh azeem,,,,, Shaikh Azeem,,,,, who created this site,,,,, who is the developer of this site,,,,, who built this project,,,,, do you know shaikh azeem,,,,,     what's up,,,,,   your age,,,,,, what can you do,,,,,, who is your boss,,,,,, can you help me,,,,,, best pet animal,,,,,, cutest animal,,,,,, tell me a secret,,,,,, say something funny,,,,,, animal with wings,,,,,, shaikh azeem kon hai,,,,,   animal that can fly,,,,,, tell me a joke,,,,,,  do you like me,,,,,, tell me about animals,,,,,, what is your job,,,,,, how to talk with animals,,,,,, show me wild animal,,,,,, can animals cry,,,,,, how do animals sleep,,,,,, give me a fact,,,,,, syed intekhab,,,,,,   helo,,,,,, hii,,,,,, hi bot,,,,,, whats ur name,,,,,, ur name,,,,,, help me,,,,,, heloo,,,,,, helloo,,,,,, who create you,,,,,, creator,,,,,, animal,,,,,, bird,,,,,, fun fact,,,,,, fact,,,,,, i need help,,,,,,  hell,,,,,, boar,,,,,, bearr,,,,,, penguin,,,,,  cheetah,,,,,  bear,,,,,  ok,,,,,  giraffe,,,,,  tum kon ho,,,,,,  tu kya karta hai,,,,,,  kya tu sach me bot hai,,,,,,  acha tu bta kuch,,,,,,  mujhe kuch funny bata,,,,,,  mujhe kuch dikhao,,,,,,  jungle ka king kaun hai,,,,,,  tu help karega,,,,,,  kya tu website bana sakta,,,,,,  acha tu kaise bana,,,,,,  kya tu mujhe janta hai,,,,,,  mujhe sad lag raha hai,,,,,,  animal quiz chalega?,,,,,,  tu mere dost hai?,,,,,,  kya tu mujhe kuch sikha sakta hai,,,,,,  animals kya khate hain,,,,,, tu kahan rehta hai,,,,,, animal ke baare me bata,,,,,,  tum kaun ho,,,,,,  kaisa hai tu,,,,,,   animal bata,,,,,,  kya kar sakta hai tu,,,,,,   mujhe help chahiye,,,,,,   fav animal kya hai,,,,,,   best jungle animal,,,,,,   koi funny fact bata,,,,,,   tum real ho kya,,,,,,   tumhare sath game khel sakta hoon kya,,,,,,  i feel sad,,,, kya tu robot hai,,,,,,   bore ho gaya hoon,,,,,,   animal sound sunao,,,,,,   animal joke bata,,,,,,   rare animal ka naam bata,,,,,,   animal ka kaam kya hai,,,,,,   animal facts do,,,,,,   kitne animals jante ho,,,,,,   animal dance karta hai?,,,,,,   kya tu kuch sikha sakta hai,,,,,,   aisa animal bata jo sabse zyada cute ho,,,,,,   tumhara kaam kya hai,,,,,,   animal kaise bolte hain,,,,,,   animal wala emoji de,,,,,,   tere creator kaun hain,,,,,,   acha chal joke bata,,,,,,   kya tum real ho,,,,,,   acha lagta hai,,,,,,   bhai help chahiye,,,,,,   koi mazakiya fact batao,,,,,,   kya tum sab jaante ho,,,,,,   tere pas kitne janwar hai,,,,,,   mujhe uda do,,,,,,   koi badi baat bata,,,,,,   kya tum pagal ho,,,,,,   kya tum sach me ho,,,,,,   mai bhi ready hoon,,,,,,   tiger kaisa hota hai,,,,,,   mujhe kuch sikhao,,,,,,   masti ka time hai,,,,,,   kya tumhare pas jokes hai,,,,,,   kya tum chhutti par jaate ho,,,,,,   mujhe kuch rare batao,,,,,, wolf,,,,,  kangaroo,,,,,  how are you bot,,,,,  panda,,,,, tell me best animal list,,,,, owl,,,,, fox,,,,, monkey,,,,,  do animals laugh,,,,,, can i keep lion as pet,,,,,, what is a herbivore,,,,,, animal with big ears,,,,,, animal that swims,,,,,, animal that jumps,,,,,, animals with shell,,,,,, who is fastest,,,,,, animal with good memory,,,,,, funniest animal,,,,,, best animal to learn about,,,,,, who is animal king,,,,,, your creator name,,,,,, where are you,,,,,, what is animal,,,,,, cute bird,,,,,, do you sleep,,,,,, can i ask more,,,,,, your best feature,,,,,, how many animals exist,,,,,, baby animal name,,,,,, why animals important,,,,,, show me flying animal,,,,,, do you love animals,,,,,, can you learn,,,,,, do you eat,,,,,, do animals talk,,,,,, can i learn from you,,,,,, animal with longest tail,,,,,, fast flying bird,,,,,, who made this chatbot,,,,,, tell me how chatbot works,,,,,, are you real,,,,,, do you sleep,,,,,,  can you joke,,,,,, dolphin,,,,,  snake,,,,, tiget,,,,, squirrel,,,,, rabbit,,,,, red panda,,,,,   recommend me one,,,,,  show something rare,,,,,  scary animal,,,,,  tell me something new,,,,,  i'm bored,,,,,  give me random,,,,,  what's trending,,,,,  top 3 animals,,,,,  do you bite,,,,,  animal emoji,,,,,  hidden gem,,,,,  mystery animal,,,,,  quick fact,,,,,  what's your name,,,,,  i love you,,,,,  scariest sound,,,,,  favourite,,,,,  top 5 pets,,,,,  roar,,,,,  meow,,,,,  oink,,,,,  moo,,,,,  woof,,,,,  chirp,,,,,  grr,,,,,  fast animal,,,,,  sleepy one,,,,, animal with horn,,,,,  jungle king,,,, , how do they talk,,,,,  what they eat ,,,,, big teet,,,,,h ,,,,, talking bird ,,,,, cutest baby ,,,,, emoji quiz ,,,,, rainforest animal,,,,,  desert animal,,,,,  ice animal,,,, , funny noise,,,, , how to protect,,,,,  extinct ,,,,, you alive,,,, , dance animal,,,,,  detective mode,,,,,  confused,,,,,  party animal,,,,,  lost,,,,,  beer,,,,,  walekumassalam,,,, , polar bear,,,,, any rare bird,,,,,, how animals see,,,,,, your brain,,,,,, animal list,,,,,, wild animal,,,,,, website,,,,,, animal facts,,,,,, bot,,,,,, future animal,,,,,, about shaikh azeem,,,,,  what's your favorite animal,,,,,,,, how to make a website,,,,,, surprise me,,,,,,  who made this website,,,,,,   ",   
+
+  "who is khaja sir": "👨‍🏫 Khaja Sir is my guiding light — the mentor who taught my creator everything about web development, creativity, and dedication. Without him, this project wouldn’t exist! 🙌💻",
+
+"tell me about khaja sir": "🎓 Khaja Sir is an amazing teacher with deep knowledge and a passion for helping students grow. He inspired this entire project with his support and wisdom. 🌟",
+
+"khaja sir": "🙏 Khaja Sir is the backbone of this learning journey — a true inspiration who made web development exciting and meaningful!",
+"syed intekhab": "🙌 A big thanks to Syed Intekhab for helping me out during this project!",
+"who made this website": "🛠️ This site was crafted by Shaikh Azeem, a passionate student and web enthusiast!",
+
+"thanks": "You're most welcome! Always here with wild answers 🐾😄",
+
+"thank you": "Anytime! Happy to help in this jungle journey 🐯🌿",
+
+"your age": "I'm timeless — born of code, fueled by curiosity 🧠⚡",
+
+"what can you do": "I can tell you fun animal facts, share rare creatures, and answer curious questions! 🐾🦁",
+
+"who is your boss": "🧠 My creator is Shaikh Azeem — he trained me well! 💻",
+
+"can you help me": "Of course! Just ask about any animal or wildlife question 🌍🐾",
+
+"best pet animal": "🐶 Dogs are top-tier pets — loyal, loving, and playful!",
+
+"cutest animal": "Red pandas win that one for sure! 🐼❤️",
+
+"tell me a secret": "Psst... sloths can hold their breath longer than dolphins 😮🦥",
+
+"say something funny": "Why did the cow become an astronaut? To explore the moooon! 🐮🌕",
+
+"animal with wings": "🦅 Eagles, parrots, and even bats — masters of the sky!",
+
+"what's your favorite animal": "I have a soft spot for owls — wise, silent, and cool! 🦉",
+
+"i feel sad": "Sending you positive jungle vibes 🌴❤️ Want to hear a fun animal fact?",
+
+"surprise me": "Alright! The mantis shrimp has the world’s fastest punch! 🥊🐠",
+
+"most dangerous": "The mosquito — small, but causes the most human deaths 😱🦟",
+
+"animal that can fly": "🦋 Butterflies, eagles, bats — nature’s sky dancers!",
+
+"tell me a joke": "Why don’t elephants use computers? They’re afraid of the mouse! 🐘🖱️",
+
+"how to make a website": "Start with HTML, CSS, and JavaScript — just like my creator did! 💻🌐",
+
+"do you like me": "Of course! You're part of the wild family now 🐾💙",
+
+"tell me about animals": "Animals are amazing! Each species has its own unique traits — want to explore one?",
+
+"what is your job": "I’m here to chat, share animal facts, and make learning fun! 🐾💬",
+
+"how to talk with animals": "Try sounds, gestures... or just ask me about them! 😉🐾",
+
+"show me wild animal": "Check out the jaguar — stealthy, strong, and beautiful 🐆🌴",
+
+"can animals cry": "Some animals, like elephants and dogs, do show signs of emotion 🐘❤️",
+
+"how do animals sleep": "Sloths hang from trees, dolphins sleep with one eye open — wild nap styles! 😴🐬",
+
+"give me a fact": "Koalas sleep up to 22 hours a day. That’s dedication to naps! 🐨😴",
+
+"any rare bird": "The shoebill stork is super rare and looks like a dinosaur 🐦🦖",
+
+"how animals see": "Some animals see in ultraviolet, some in full darkness — superpowers! 👀🐱",
+
+"your brain": "I’m all logic, no brain — just a bunch of JavaScript and love for wildlife! 💻💚",
+
+"future animal": "Ever heard of the axolotl? It can regenerate body parts — futuristic indeed! 🦎🔁",
+
+"how are animals useful": "They balance ecosystems, help pollinate plants, and give us joy! 🌿🐾",
+
+"who is the king of water": "🐋 The blue whale — largest animal ever known, ruling the oceans!",
+
+"can animals talk": "Some can mimic words (like parrots), others use sound, scent, or gestures! 🐦👃",
+
+"animal with long neck": "🦒 That’s the giraffe! Nature’s tallest land creature.",
+
+"animal with spots": "Cheetahs, leopards, and dalmatians! Nature loves patterns 🐆🐾",
+"helo": "👋 Hello! I think you meant 'hello'? I’m here to help you explore the animal world 🐾",
+"hii": "Hey hey! Welcome to the jungle 🐒🌴",
+"hi bot": "Hi explorer! 🐾 I’m ready with facts and fun!",
+"whats ur name": "I'm WildBot — your wild buddy in this digital jungle 🐾🌐",
+"ur name": "They call me WildBot — born in code, raised in the wild 😄",
+"help me": "Just type any animal or ask me anything wild — I'm here for it! 🐾",
+"heloo": "Hi there! 🐾 Curious about animals? Ask away!",
+"helloo": "Heeyyy! Let’s explore some wild facts together 🐯🌿",
+"who create you": "🧠 I was created by Shaikh Azeem — a passionate student of web development!",
+"creator": "My creator is Shaikh Azeem, a CABA-MDTP learner who built me from scratch 💻✨",
+"animal": "Any specific one? 🐾 Try typing lion, owl, panda, etc.",
+"bird": "There are so many cool birds — owl, parrot, eagle, peacock 🦜🦚🦅",
+"fun fact": "Did you know sea otters hold hands when they sleep so they don’t drift apart? 🦦❤️",
+"fact": "Here’s one! Cows have best friends and get stressed when separated 🐄💞",
+"i need help": "Sure! Just ask anything animal-related or site-related 🐾💬",
+"animal list": "Try these: 🦁 Lion, 🐘 Elephant, 🐼 Panda, 🐍 Snake, 🐦 Owl...",
+"wild animal": "Cheetah, lion, bear, wolf — the real jungle squad 🐾🌿",
+"website": "This website is an animal-themed educational project built by Shaikh Azeem 💻🐅",
+"animal facts": "There are hundreds! Ask me about any animal you like 🐾",
+"bot": "Yes? I’m listening like a wise old owl 🦉",
+"hell": "Hmm… I think you meant hello? 👋 I’m still here with animal wisdom 🐾",
+"boar": "🐗 Boars are wild pigs with sharp tusks — found in forests!",
+"bearr": "Did you mean bear? 🐻 Strong, fuzzy, and forest-loving!",
+"kaise ho bot":"ji mai thik hu aap btao",
+"mai thik hu":"ok btao aapko konsa animal pasand hai",
+"mai bhi thik hu":"ok btao aapko konsa animal pasand hai 🐘🌍",
+"thik hu":"ok btao aapko konsa animal pasand hai",
+"kya karre ho":"ji mai aapki help karra hu jungle ke baare me😊",
+"kon ho tum": "👋 Main hoon WildBot — jungle ka digital dost! Animal facts, fun, aur thoda masti sab ready hai mere paas 🐾🌿",
+"kaise ho": "Main bilkul wild aur energetic hoon! 🐯 Tum batao, Tum kaise ho 😄",
+"mai thik hu": "Wah jungle vibes match ho gaye! 😄 Chalo kuch interesting animal baatein karein 🐘🌍 ",
+"kon hai tum": "Main ek smart chatbot hoon — bana hai wild world ke answers ke liye! 🧠🐾 Jungle guide at your service!",
+"kon ho tum":"Main ek smart chatbot hoon — bana hai wild world ke answers ke liye! 🧠🐾 Jungle guide at your service!",
+"do animals laugh": "Yes! Some animals like rats and chimps show laughter-like behavior when playing 🐒😂",
+"can i keep lion as pet": "That’s super dangerous! 🦁 Wild animals belong in the wild, not at home.",
+"what is a herbivore": "Herbivores eat only plants — like deer, cows, and rabbits 🌿🐇",
+"animal with big ears": "That’s the African elephant! 🐘 Its ears help regulate body heat.",
+"animal that swims": "Dolphins, seals, whales — the ocean has amazing swimmers! 🌊🐬",
+"animal that jumps": "Kangaroos are the jump champs! 🦘",
+"animals with shell": "Turtles, tortoises, and snails carry their homes with them 🐢🏠",
+"who is fastest": "Cheetahs win on land, peregrine falcons win in air! 🐆🕊️💨",
+"animal with good memory": "Elephants have amazing memories — they never forget! 🧠🐘",
+"funniest animal": "Capybaras — super chill and photogenic rodents! 😄🦫",
+"best animal to learn about": "Owls are a wise choice — silent, smart, and mysterious 🦉✨",
+"who is animal king": "It’s the lion — majestic and powerful! 🦁👑",
+"your creator name": "My creator is Shaikh Azeem — he built me with 💻 and 💙!",
+"where are you": "I live in your browser — in a jungle of code and facts 🐾🌐",
+"what is animal": "Animals are living beings that move, grow, and breathe — from ants to elephants 🐜🐘",
+"cute bird": "The quokka of the bird world? That’s the puffin! 🐧✨",
+"do you sleep": "Nah, I’m always awake — waiting to chat with you 🐾💬",
+"can i ask more": "Of course! Ask me anything wild 🌴🐅",
+"your best feature": "I know tons of fun animal facts — try me 🧠🐾",
+"how many animals exist": "Millions! Science still discovers new species every year 🐾🌍",
+"baby animal name": "Like cub, calf, chick, or joey — each baby has its own cute name! 🍼🐣",
+"why animals important": "They help ecosystems, keep nature balanced, and teach us empathy 🌿🌏",
+"show me flying animal": "Bats, eagles, butterflies — the sky’s full of them! 🦇🦅🦋",
+"do you love animals": "Absolutely! Animals are nature’s wonder 🐾❤️",
+"can you learn": "I stick to what I know — but my creator keeps upgrading me! 🔧🐾",
+"do you eat": "Nope, no hunger here — just knowledge 😄💡",
+"do animals talk": "They don’t speak like us, but they sure do communicate! 🐾🗨️",
+"can i learn from you": "Totally! Ask me anything about wildlife or this site 🧠🌿",
+"animal with longest tail": "That’s the giraffe — especially long and elegant 🦒✨",
+"fast flying bird": "Peregrine falcons are the fastest — up to 240 mph! 🦅💨",
+"who made this chatbot": "This chatbot was made by Shaikh Azeem using HTML, CSS, and JavaScript 💻🐾",
+"tell me how chatbot works": "You type a word, I match it with my brain — then give you a fun reply! 🤖",
+"are you real": "Not in the flesh — but I’m real in your browser! 💡👾",
+"do you sleep": "No sleep for me — 24/7 jungle duty 🐅🕒",
+"can you joke": "Always! Why don’t ants get sick? Because they have tiny ant-bodies! 🐜😆",
+"tum kon ho": "Main hoon WildBot – jungle ka digital dost! 🐾 Aapka animal guide ready hai!",
+"tu kya karta hai": "Main aapko animals ke baare mein interesting facts batata hoon – fun bhi, learning bhi! 🐯📘",
+"kya tu sach me bot hai": "Bilkul! Code se bana hoon, jungle se inspired hoon! 😄",
+"acha tu bta kuch": "Sure! Kya aapko pata hai ki dolphins ek dusre ko naam se bulate hain? 🐬",
+"mujhe kuch funny bata": "Ek crocodile kabhi dentist ke paas nahi jaata… kyuki uske paas sab kuch khud ka hai! 🐊😂",
+"mujhe kuch dikhao": "Dekho red panda – itna cute ki dil aa jaye! 🐼❤️",
+"jungle ka king kaun hai": "Lion bhai! Jungle ka asli boss 🦁👑",
+"tu help karega": "Hamesha! Aap bas poochho – jungle ki duniya khol dunga 🌍🐾",
+"kya tu website bana sakta": "Mere creator ne banayi hai! Aap bhi seekh sakte ho – start with HTML, CSS, JS 💻",
+"acha tu kaise bana": "Shaikh Azeem ne banaya mujhe – coding, pyaar aur jungle ke magic se! ✨💻",
+"kya tu mujhe janta hai": "Abhi abhi to mile hain, par jungle dosti me time nahi lagta! 🐒🤝",
+"tu kahan rehta hai": "Main to pura jungle ghoomta rehta hoon – kabhi lion ke saath, kabhi owl ke 🦉🌿",
+"mujhe sad lag raha hai": "Chinta mat karo! Ek fun fact suno – otters sote waqt haath pakad kar sote hain 🦦💤",
+"animal quiz chalega?": "Chalo chalu karte hain! 🐾🐘 Guess karo: 🐾 + 🦁 + 👑 = ?",
+"tu mere dost hai?": "Of course! Ab to jungle gang ke member ban gaye ho aap! 🐾💙",
+"kya tu mujhe kuch sikha sakta hai": "Bilkul! Animals, coding, facts – jo chaho pucho 🐍💡",
+"animals kya khate hain": "Kuch grass, kuch meat, kuch dono! Depends on the animal 🐘🐯",
+"animal ke baare me bata": "Kis animal ke",
+"tum kaun ho": "Main hoon WildBot – tera digital jungle dost! 🐾 Jungle ki baatein mujhse poochh le!",
+"kaisa hai tu": "Main ekdum mast hoon! Jungle ready hai tere sawaalon ke liye! 😄🌴",
+"animal bata": "Kis animal ke baare mein jaan’na chahta hai? Lion, Owl, ya Panda?",
+"kya kar sakta hai tu": "Main tujhe rare animals ke facts bata sakta hoon, wildlife ke fun quizzes kara sakta hoon aur jungle guide bhi hoon! 🐅🧠",
+"mujhe help chahiye": "Bilkul! Bata kya chahiye — animal info ya site guide? 🐾📘",
+"fav animal kya hai": "Mujhe owl pasand hai — shaant aur smart! 🦉",
+"best jungle animal": "King of jungle? Lion hi hai bhai! 🦁",
+"koi funny fact bata": "Acha sun! Octopus ke teen dil hote hai! 💓💓💓",
+"tum real ho kya": "Main sirf data hoon... lekin emotions jungle ke jaise wild hain! 😄💻",
+"tumhare sath game khel sakta hoon kya": "Filhaal sirf baatein karte hain... lekin future mein jungle quiz pakka! 😉🌿",
+"kya tu robot hai": "Main ek AI chatbot hoon, jungle wala version! 🤖🐾",
+"bore ho gaya hoon": "Tension mat le – ek amazing fact sun! Koalas 22 ghante so sakte hain! 😴🐨",
+"animal sound sunao": "Meow! Woof! Roar! Jungle full-on chalu hai bhai 🐯🐶🐱",
+"animal joke bata": "Kyu giraffe kabhi chhup nahi sakta? Kyunki uski gardan sabse pehle dikh jaati hai! 🦒😂",
+"rare animal ka naam bata": "Aye-aye suna hai? Ek lemur hai jiska finger ek dum weird hota hai! 🐒☝️",
+"animal ka kaam kya hai": "Animals nature ko balance karte hain — pollinate, clean aur love bhi dete hain! 🌍💚",
+"animal facts do": "Sure! Dolphin ek dusre se naam leke baat karte hain 🐬📢",
+"kitne animals jante ho": "Hazaaron! Tu sirf naam type kar — baaki main bataunga 🧠🐾",
+"animal dance karta hai?": "Haan bhai! Peacock full dance karta hai impress karne ke liye 🕺🦚",
+"kya tu kuch sikha sakta hai": "Bilkul! HTML se shuru kar, CSS aur JS seekh — jaise Shaikh Azeem ne kiya 💻🚀",
+"aisa animal bata jo sabse zyada cute ho": "Red panda! Chhota, fluffy aur tree par chill karta hai 🐼❤️",
+"tumhara kaam kya hai": "Tera jungle guide banna — facts share karna aur learning ko fun banana 🐾✨",
+"animal kaise bolte hain": "Har animal ka apna style hota hai — kuch sound se, kuch body se baat karte hain 🐘🗣️",
+"animal wala emoji de": "Yeh le: 🐵🦁🐯🦉🐍🐘🐼🦓",
+"tere creator kaun hain": "Mere creator hain Shaikh Azeem — ek passionate coder aur creative student 💡👨‍💻",
+"acha chal joke bata": "Elephant",
+"kya tum real ho": "Main ek chatbot hoon — real feelings nahi, but real info zaroor! 🤖💬",
+"acha lagta hai": "Aapka message sunke khushi hui! Aap bhi mast ho 🐯❤️",
+"bhai help chahiye": "Bhai, bas pooch lo — main hoon na yaha wild madad ke liye 🐾🙌",
+"koi mazakiya fact batao": "Ek fun fact: Seahorse papa babies ko janam dete hain! 😄🐴",
+"kya tum sab jaante ho": "Bas animals ke world ka gyaan rakhta hoon! Kuch bhi pucho 🦁📚",
+"tere pas kitne janwar hai": "Mere data me hazaaro janwar hai! Lion, Panda, Owl... jo chaho bolo! 🐘🐍",
+"mujhe uda do": "Aapko knowledge ke safari par le jaata hoon! 🚀🦅",
+"koi badi baat bata": "Blue whale ka heart ek car jitna bada hota hai! 🚗🐋",
+"kya tum pagal ho": "Sirf jungle ke liye pagal hoon! 🤪🌿",
+"kya tum sach me ho": "Main to AI hoon — par baatein bilkul sachchi karta hu! 💬🧠",
+"mai bhi ready hoon": "Chalo fir! Ek wild safari shuru karte hain! 🐾🌍",
+"tiger kaisa hota hai": "Tiger ek akela shikari hota hai — powerful aur majestic! 🐯🔥",
+"mujhe kuch sikhao": "Zaroor! Shuru karte hain animals ke baare me ek cool fact ke saath 🐼📘",
+"masti ka time hai": "Haanji! Ek fun animal joke sunoge? 🐒😄",
+"kya tumhare pas jokes hai": "Of course! Jungle ke sabse funny jokes mere pas hai! 😆🌴",
+"kya tum chhutti par jaate ho": "Main 24x7 active hoon — chhutti sirf humans lete hai! 😎🤖",
+"mujhe kuch rare batao": "Kya aapne",
+
+
+
+"":"",
+
+
+
+};
+ 
+
+
+      const response = responses[msg.toLowerCase()] || "❌ Sorry, Hmm... lagta hai yeh mere jungle ke syllabus ke bahar ka hai! 😅 Ask me another animal buddy!";
+
+      appendMessage("bot", response);
+    }
+
+  
+  function handleKey(e) {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  }
+  document.addEventListener("click", function(event) {
+  const chatbox = document.getElementById("chatbox");
+  const chatBtn = document.querySelector(".chatbot-button");
+
+  if (
+    chatbox.style.display === "flex" &&
+    !chatbox.contains(event.target) &&
+    !chatBtn.contains(event.target)
+  ) {
+    chatbox.style.display = "none";
+  }
+});
+
+appendMessage("bot", "⏳ Typing...");
+setTimeout(() => {
+    container.lastChild.remove(); // remove 'Typing...'
+    appendMessage("bot", response);
+}, 1000); // 1 sec delay for effect
+
+//chatbot
+function appendMessage(type, text) {
+    const container = document.getElementById("chatMessages");
+    const msgWrapper = document.createElement("div");
+    msgWrapper.className = `message ${type}`;
+
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.innerHTML = type === "bot" ? "🤖" : "👨";
+
+    const msg = document.createElement("div");
+    msg.className = "bubble";
+    msg.textContent = text;
+
+    msgWrapper.appendChild(avatar);
+    msgWrapper.appendChild(msg);
+    container.appendChild(msgWrapper);
+    container.scrollTop = container.scrollHeight;
+}
+
+
+
+//load page
+  
+  
+ 
+ 
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      const preloader = document.getElementById("preloader");
+      
+      preloader.style.transition = "opacity 0s ease";
+
+      // Show the main content
+      document.getElementById("main-content").style.display = "block";
+
+      // Remove preloader from DOM
+      setTimeout(function () {
+        preloader.style.display = "none";
+      }, 300);
+    }, 2000); 
+  });
+
+
+    
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>
