@@ -3,292 +3,441 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ConfirmTicket - Indian Railway Booking</title>
+  <title>Rail Yatra - Indian Railway Booking</title>
   <link rel="icon" href="https://img.icons8.com/ios-filled/50/train.png" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">function showRegister() {
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("registerPage").style.display = "block";
+}
+
+function showLogin() {
+  document.getElementById("registerPage").style.display = "none";
+  document.getElementById("loginPage").style.display = "block";
+}
+
+function registerUser(event) {
+  event.preventDefault();
+  const name = document.getElementById("regName").value;
+  const email = document.getElementById("regEmail").value;
+  const password = document.getElementById("regPassword").value;
+  alert(`User Registered Successfully!
+Name: ${name}
+Email: ${email}`);
+  showLogin();
+  return false;
+}
+
+</script>
+<script>
+function validateLogin(event) {
+  event.preventDefault();
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+  document.getElementById("bookingPage").style.display = "none";
+  document.getElementById("paymentPage").style.display = "none";
+  document.getElementById("ticketPage").style.display = "none";
+}
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     :root {
-      --primary: #1e3a8a;
-      --accent: #2563eb;
-      --bg: #f0f4f8;
-      --text: #1f2937;
-      --light: #ffffff;
-      --dark: #111827;
+      --bg-light: #f0f4f8;
+      --text-light: #000;
+      --bg-dark: #1e3a8a;
+      --text-dark: #f0f4f8;
     }
-    * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-dark);
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
+      padding: 0;
+      transition: all 0.3s;
     }
-    .dark-mode {
-      --bg: #111827;
-      --text: #f9fafb;
-      --light: #1f2937;
-    }
-    header {
-      background: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 20px;
-      position: relative;
-    }
-    .logo {
-      width: 60px;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .typing {
-      font-size: 1.2rem;
-      color: #fcd34d;
-      font-weight: bold;
+    body.light-mode {
+      background: var(--bg-light);
+      color: var(--text-light);
     }
     .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      background: var(--light);
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: linear-gradient(to right, #3b82f6, #1e3a8a);
       border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-      animation: fadeSlide 0.5s ease-in;
-    }
-    @keyframes fadeSlide {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .btn {
-      background: var(--accent);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      margin-top: 20px;
     }
-    .btn:hover {
-      background: #1e40af;
-      transform: scale(1.05);
-    }
-    .page { display: none; }
-    .page.active { display: block; }
-    input, select {
+    label, input, select {
+      display: block;
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      margin-bottom: 10px;
     }
-    .error {
-      color: red;
-      font-size: 0.9em;
-    }
-    .dark-toggle {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      background: #fff;
-      color: #000;
+    button, .back-button {
+      padding: 10px 20px;
       border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
+      background: #facc15;
+      color: black;
+      border-radius: 8px;
       cursor: pointer;
+      margin-top: 10px;
     }
-    .payment-options label {
-      display: inline-block;
-      margin-right: 20px;
+    .back-button {
+      background: #dc2626;
+      color: white;
+      text-decoration: none;
+    }
+    .toggle-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+    header {
+      background: linear-gradient(to right, #111827, #1e3a8a);
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #facc15;
+      letter-spacing: 2px;
+    }
+    header img {
+      width: 50px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    #homePage {
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <header>
-    <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle</button>
-    <img class="logo" src="https://img.icons8.com/ios-filled/100/train.png" alt="Train Logo" />
-    <h1>ConfirmTicket</h1>
-    <p class="typing" id="typingText"></p>
-  </header>
+<div class="toggle-container">
+  <label><input type="checkbox" id="modeToggle" /> Day/Night</label>
+</div>
 
-  <div class="container page active" id="home">
-    <h2>Welcome to ConfirmTicket!</h2>
-    <ul>
-      <li>🚆 Real-time Train Availability</li>
-      <li>📆 Live Seat & Fare Checking</li>
-      <li>🧾 Instant PDF Ticket Generation</li>
-      <li>🧑 Passenger Login & Dashboard</li>
-      <li>🎁 Promo Code & Smart Payment</li>
-      <li>🌐 Responsive & Dark Mode</li>
-    </ul>
-    <button class="btn" onclick="nextPage('search')">Book Now</button>
-  </div>
+<header>
+  <h1><img src="https://img.icons8.com/ios-filled/50/train.png" alt="Train Icon" /> <span style="color:#facc15; font-weight:bold;">Rail</span> <span style="color:white; font-weight:bold;">Yatra</span></h1>
+</header>
 
-  <div class="container page" id="search">
-    <h2>Search Trains</h2>
-    <label>From:</label>
-    <select id="from">
-      <option>Mumbai</option><option>Pune</option><option>Delhi</option><option>Hyderabad</option><option>Nashik</option>
-    </select>
-    <label>To:</label>
-    <select id="to">
-      <option>Chennai</option><option>Kolkata</option><option>Delhi</option><option>Thane</option>
-    </select>
-    <label>Date:</label>
-    <input type="date" id="date">
-    <label>Tickets:</label>
-    <input type="number" id="tickets" value="1" min="1">
-    <div id="searchError" class="error"></div>
-    <button class="btn" onclick="validateSearch()">Search</button>
-  </div>
+<div class="container" id="loginPage">
+  <h2>?? User Login</h2>
+  <form onsubmit="return validateLogin(event)">
+    <label>Email:
+      <input type="email" id="userEmail" required />
+    </label>
+    <label>Password:
+      <input type="password" id="userPassword" required />
+    </label>
+    <button type="submit">Login</button>
+    <p style="margin-top:10px; font-size: 0.9em;">Don't have an account? <a href="#" onclick="showRegister()" style="color: #facc15; text-decoration: underline;">Register Here</a></p>
+  </form>
+</div>
 
-  <div class="container page" id="trains">
-    <h2>Select Train</h2>
-    <select id="train">
-      <option>Rajdhani Express</option>
-      <option>Tejas Express</option>
-      <option>Duronto Express</option>
-      <option>Shatabdi Express</option>
-    </select>
-    <label>Class:</label>
-    <select id="trainClass">
-      <option>Sleeper (SL)</option>
-      <option>AC 3 Tier (3A)</option>
-      <option>AC 2 Tier (2A)</option>
-    </select>
-    <label>Passenger Name:</label>
-    <input type="text" id="passenger">
-    <div id="trainError" class="error"></div>
-    <button class="btn" onclick="validateTrain()">Continue to Payment</button>
-  </div>
+<div class="container" id="registerPage" style="display:none;">
+  <h2>?? User Registration</h2>
+  <form onsubmit="return registerUser(event)">
+    <label>Name:
+      <input type="text" id="regName" required />
+    </label>
+    <label>Email:
+      <input type="email" id="regEmail" required />
+    </label>
+    <label>Password:
+      <input type="password" id="regPassword" required />
+    </label>
+    <button type="submit">Register</button>
+    <p style="margin-top:10px; font-size: 0.9em;">Already registered? <a href="#" onclick="showLogin()" style="color: #facc15; text-decoration: underline;">Login Here</a></p>
+  </form>
+</div>
 
-  <div class="container page" id="payment">
-    <h2>Payment</h2>
-    <label>Coupon Code (Optional):</label>
-    <input type="text" id="coupon" placeholder="e.g., RAILYATRA50">
-    <h3>Select Payment Method:</h3>
-    <div class="payment-options">
-      <label><input type="radio" name="pay" checked> UPI</label>
-      <label><input type="radio" name="pay"> PhonePe</label>
-      <label><input type="radio" name="pay"> Google Pay</label>
-      <label><input type="radio" name="pay"> Debit/Credit Card</label>
-    </div>
-    <p id="totalAmount"></p>
-    <button class="btn" onclick="generateTicket()">Pay & Generate Ticket</button>
-  </div>
+<div class="container" id="homePage" style="display:none;">
+  <h2 style="font-size: 2em; font-weight:bold; margin-bottom: 10px;">?? Welcome to <span style="color:#facc15;">Rail Yatra</span></h2>
+  <p style="font-size: 1.15em; line-height: 1.8; text-align: left; padding: 10px; border-left: 5px solid #facc15; background: rgba(255,255,255,0.1); border-radius: 10px;">
+     <img src="https://img.icons8.com/color/48/train-ticket.png" style="vertical-align: middle; margin-right: 10px;"/> <strong>Book</strong> Indian Railway tickets instantly<br>
+     <img src="https://img.icons8.com/color/48/money-transfer.png" style="vertical-align: middle; margin-right: 10px;"/> <strong>Secure</strong> UPI & card payments<br>
+     <img src="https://img.icons8.com/color/48/pdf-2.png" style="vertical-align: middle; margin-right: 10px;"/> <strong>Auto</strong>-generated downloadable PDF tickets<br>
+     <img src="https://img.icons8.com/color/48/group.png" style="vertical-align: middle; margin-right: 10px;"/> Add multiple passengers (Adult/Child)<br>
+     <img src="https://img.icons8.com/color/48/sun--v1.png" style="vertical-align: middle; margin-right: 10px;"/> Responsive UI with Day/Night mode<br>
+     <img src="https://img.icons8.com/color/48/code.png" style="vertical-align: middle; margin-right: 10px;"/> Built with HTML, CSS, JS, PHP, MySQL
+  </p>
+  <button style="margin-top: 20px; font-size: 1.1em; padding: 12px 25px;" onclick="goToBooking()">?? Start Booking</button>
+</div>
 
-  <div class="container page" id="ticket">
-    <h2>🎉 Booking Confirmed!</h2>
-    <div id="ticketPreview">
-      <p><strong>Passenger:</strong> <span id="tpName"></span></p>
-      <p><strong>Train:</strong> <span id="tpTrain"></span></p>
-      <p><strong>Date:</strong> <span id="tpDate"></span></p>
-    </div>
-    <p>Your ticket is ready. Click below to open the PDF.</p>
-    <button class="btn" onclick="downloadPDF()">Download Ticket PDF</button>
-  </div>
+<div class="container" id="bookingPage" style="display:none;">
+  <h2>?? Book Your Train</h2>
+  <form id="bookingForm">
+    <label>From:
+  <select id="from" required>
+    <option value="">--Select City--</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Bengaluru">Bengaluru</option>
+    <option value="Hyderabad">Hyderabad</option>
+    <option value="Ahmedabad">Ahmedabad</option>
+    <option value="Chennai">Chennai</option>
+    <option value="Kolkata">Kolkata</option>
+    <option value="Pune">Pune</option>
+    <option value="Jaipur">Jaipur</option>
+    <option value="Lucknow">Lucknow</option>
+    <option value="Kanpur">Kanpur</option>
+    <option value="Nagpur">Nagpur</option>
+    <option value="Indore">Indore</option>
+    <option value="Bhopal">Bhopal</option>
+    <option value="Patna">Patna</option>
+    <option value="Ludhiana">Ludhiana</option>
+    <option value="Agra">Agra</option>
+    <option value="Nashik">Nashik</option>
+    <option value="Vadodara">Vadodara</option>
+    <option value="Faridabad">Faridabad</option>
+    <option value="Meerut">Meerut</option>
+    <option value="Rajkot">Rajkot</option>
+    <option value="Kalyan">Kalyan</option>
+    <option value="Vasai-Virar">Vasai-Virar</option>
+    <option value="Varanasi">Varanasi</option>
+    <option value="Srinagar">Srinagar</option>
+    <option value="Aurangabad">Aurangabad</option>
+    <option value="Dhanbad">Dhanbad</option>
+    <option value="Amritsar">Amritsar</option>
+    <option value="Navi Mumbai">Navi Mumbai</option>
+    <option value="Allahabad">Allahabad</option>
+    <option value="Ranchi">Ranchi</option>
+    <option value="Howrah">Howrah</option>
+    <option value="Coimbatore">Coimbatore</option>
+    <option value="Jabalpur">Jabalpur</option>
+    <option value="Gwalior">Gwalior</option>
+    <option value="Vijayawada">Vijayawada</option>
+    <option value="Jodhpur">Jodhpur</option>
+    <option value="Madurai">Madurai</option>
+    <option value="Raipur">Raipur</option>
+    <option value="Kota">Kota</option>
+    <option value="Guwahati">Guwahati</option>
+    <option value="Chandigarh">Chandigarh</option>
+    <option value="Solapur">Solapur</option>
+    <option value="Hubli">Hubli</option>
+    <option value="Mysore">Mysore</option>
+    <option value="Tiruchirappalli">Tiruchirappalli</option>
+    <option value="Bareilly">Bareilly</option>
+    <option value="Aligarh">Aligarh</option>
+  </select>
+</label>
+<label>T0:
+<select id="from" required>
+    <option value="">--Select City--</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Bengaluru">Bengaluru</option>
+    <option value="Hyderabad">Hyderabad</option>
+    <option value="Ahmedabad">Ahmedabad</option>
+    <option value="Chennai">Chennai</option>
+    <option value="Kolkata">Kolkata</option>
+    <option value="Pune">Pune</option>
+    <option value="Jaipur">Jaipur</option>
+    <option value="Lucknow">Lucknow</option>
+    <option value="Kanpur">Kanpur</option>
+    <option value="Nagpur">Nagpur</option>
+    <option value="Indore">Indore</option>
+    <option value="Bhopal">Bhopal</option>
+    <option value="Patna">Patna</option>
+    <option value="Ludhiana">Ludhiana</option>
+    <option value="Agra">Agra</option>
+    <option value="Nashik">Nashik</option>
+    <option value="Vadodara">Vadodara</option>
+    <option value="Faridabad">Faridabad</option>
+    <option value="Meerut">Meerut</option>
+    <option value="Rajkot">Rajkot</option>
+    <option value="Kalyan">Kalyan</option>
+    <option value="Vasai-Virar">Vasai-Virar</option>
+    <option value="Varanasi">Varanasi</option>
+    <option value="Srinagar">Srinagar</option>
+    <option value="Aurangabad">Aurangabad</option>
+    <option value="Dhanbad">Dhanbad</option>
+    <option value="Amritsar">Amritsar</option>
+    <option value="Navi Mumbai">Navi Mumbai</option>
+    <option value="Allahabad">Allahabad</option>
+    <option value="Ranchi">Ranchi</option>
+    <option value="Howrah">Howrah</option>
+    <option value="Coimbatore">Coimbatore</option>
+    <option value="Jabalpur">Jabalpur</option>
+    <option value="Gwalior">Gwalior</option>
+    <option value="Vijayawada">Vijayawada</option>
+    <option value="Jodhpur">Jodhpur</option>
+    <option value="Madurai">Madurai</option>
+    <option value="Raipur">Raipur</option>
+    <option value="Kota">Kota</option>
+    <option value="Guwahati">Guwahati</option>
+    <option value="Chandigarh">Chandigarh</option>
+    <option value="Solapur">Solapur</option>
+    <option value="Hubli">Hubli</option>
+    <option value="Mysore">Mysore</option>
+    <option value="Tiruchirappalli">Tiruchirappalli</option>
+    <option value="Bareilly">Bareilly</option>
+    <option value="Aligarh">Aligarh</option>
+  </select>
+</label>
 
-  <script>
-    let typingIndex = 0;
-    const typingPhrases = ["Search. Book. Travel.", "100% Indian Railway Booking.", "Your Journey Begins Here."];
-    function typeText() {
-      const el = document.getElementById("typingText");
-      const text = typingPhrases[typingIndex];
-      let i = 0;
-      el.innerHTML = "";
-      const interval = setInterval(() => {
-        el.innerHTML += text[i];
-        i++;
-        if (i === text.length) {
-          clearInterval(interval);
-          setTimeout(() => {
-            typingIndex = (typingIndex + 1) % typingPhrases.length;
-            typeText();
-          }, 2000);
-        }
-      }, 100);
-    }
-    typeText();
+    <label>Date: <input type="date" id="date" required></label>
+    <label>Train:
+  <select id="train" required>
+    <option value="">--Select Train--</option>
+    <option value="Rajdhani Express">Rajdhani Express</option>
+    <option value="Duronto Express">Duronto Express</option>
+    <option value="Tejas Express">Tejas Express</option>
+    <option value="Shatabdi Express">Shatabdi Express</option>
+    <option value="Garib Rath">Garib Rath</option>
+    <option value="Jan Shatabdi">Jan Shatabdi</option>
+    <option value="Humsafar Express">Humsafar Express</option>
+    <option value="Antyodaya Express">Antyodaya Express</option>
+    <option value="Intercity Express">Intercity Express</option>
+    <option value="Yuva Express">Yuva Express</option>
+    <option value="Double Decker">Double Decker</option>
+    <option value="Sampark Kranti">Sampark Kranti</option>
+    <option value="Vande Bharat Express">Vande Bharat Express</option>
+    <option value="Mahamana Express">Mahamana Express</option>
+    <option value="Uday Express">Uday Express</option>
+    <option value="Gatimaan Express">Gatimaan Express</option>
+    <option value="Deccan Queen">Deccan Queen</option>
+    <option value="Poorva Express">Poorva Express</option>
+    <option value="Nizamuddin Express">Nizamuddin Express</option>
+    <option value="Howrah Mail">Howrah Mail</option>
+    <option value="Punjab Mail">Punjab Mail</option>
+    <option value="Mangalore Express">Mangalore Express</option>
+    <option value="Goa Express">Goa Express</option>
+    <option value="Mandovi Express">Mandovi Express</option>
+    <option value="Kanyakumari Express">Kanyakumari Express</option>
+  </select>
+</label>
 
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
+    <label>Class:
+  <select id="trainClass" required>
+    <option value="">--Select Class--</option>
+    <option value="General (GN)">General (GN)</option>
+    <option value="Sleeper (SL)">Sleeper (SL)</option>
+    <option value="AC 3 Tier (3A)">AC 3 Tier (3A)</option>
+    <option value="AC 2 Tier (2A)">AC 2 Tier (2A)</option>
+    <option value="First Class AC (1A)">First Class AC (1A)</option>
+    <option value="AC Chair Car (CC)">AC Chair Car (CC)</option>
+    <option value="Executive Chair Car (EC)">Executive Chair Car (EC)</option>
+    <option value="Second Seating (2S)">Second Seating (2S)</option>
+  </select>
+</label>
 
-    function nextPage(page) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById(page).classList.add('active');
-    }
+    <label>Number of Passengers:
+      <input type="number" id="passengerCount" min="1" value="1" required>
+    </label>
+    <div id="passengerInputs"></div>
+    <button type="submit">Proceed to Payment</button>
+    <button type="button" class="back-button" onclick="goToHome()">? Back</button>
+  </form>
+</div>
 
-    function validateSearch() {
-      const from = document.getElementById("from").value;
-      const to = document.getElementById("to").value;
-      const date = document.getElementById("date").value;
-      const tickets = document.getElementById("tickets").value;
-      const error = document.getElementById("searchError");
-      if (!from || !to || !date || tickets < 1) {
-        error.textContent = "Please fill all fields properly.";
-      } else {
-        error.textContent = "";
-        nextPage('trains');
-      }
-    }
+<div class="container" id="paymentPage" style="display:none;">
+  <h2>?? Select Payment Method</h2>
+  <form id="paymentForm">
+    <label><input type="radio" name="paymentMethod" value="Paytm" checked> <img src="https://img.icons8.com/color/48/paytm.png" alt="Paytm" style="vertical-align:middle; width:24px;"> Paytm</label>
+    <label><input type="radio" name="paymentMethod" value="Google Pay"> <img src="https://img.icons8.com/color/48/google-pay.png" alt="Google Pay" style="vertical-align:middle; width:24px;"> Google Pay</label>
+    <label><input type="radio" name="paymentMethod" value="PhonePe"> <img src="https://img.icons8.com/color/48/phonepe.png" alt="PhonePe" style="vertical-align:middle; width:24px;"> PhonePe</label>
+    <label><input type="radio" name="paymentMethod" value="Visa"> <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" style="vertical-align:middle; width:24px;"> Visa</label>
+    <label><input type="radio" name="paymentMethod" value="MasterCard"> <img src="https://img.icons8.com/color/48/mastercard-logo.png" alt="MasterCard" style="vertical-align:middle; width:24px;"> MasterCard</label>
+    <label><input type="radio" name="paymentMethod" value="UPI"> <img src="https://img.icons8.com/color/48/rupee.png" alt="UPI" style="vertical-align:middle; width:24px;"> UPI</label>
+  </form>
+  <p style="margin-top: 20px; font-size: 1.1em;">Total Fare: ?<span id="totalFare"></span></p>
+  <button onclick="completeBooking()">? Pay & Continue</button>
+  <button class="back-button" onclick="goToBooking(true)">? Back</button>
+</div>
 
-    function validateTrain() {
-      const name = document.getElementById("passenger").value;
-      const error = document.getElementById("trainError");
-      if (!name.trim()) {
-        error.textContent = "Please enter passenger name.";
-      } else {
-        error.textContent = "";
-        updateAmount();
-        nextPage('payment');
-      }
-    }
+<div class="container" id="ticketPage" style="display:none;">
+  <h2>?? Ticket Generated</h2>
+  <p>Your ticket has been generated successfully. Click below to download it.</p>
+  <button onclick="downloadPDF()">Download PDF Ticket</button>
+  <button class="back-button" onclick="goToHome()">?? Home</button>
+</div>
 
-    function updateAmount() {
-      const tickets = parseInt(document.getElementById("tickets").value);
-      const coupon = document.getElementById("coupon").value.trim();
-      let price = 150 * tickets;
-      if (coupon === "RAILYATRA50") price *= 0.5;
-      document.getElementById("totalAmount").innerText = `Total Payable: ₹${price}`;
-    }
+<script>
+function goToBooking(fromBack) {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("ticketPage").style.display = "none";
+  document.getElementById("paymentPage").style.display = "none";
+  document.getElementById("bookingPage").style.display = "block";
+  if (!fromBack) generatePassengerInputs();
+}
+function goToHome() {
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+  document.getElementById("bookingPage").style.display = "none";
+  document.getElementById("paymentPage").style.display = "none";
+  document.getElementById("ticketPage").style.display = "none";
+}
+function generatePassengerInputs() {
+  const count = parseInt(document.getElementById('passengerCount').value);
+  const container = document.getElementById('passengerInputs');
+  container.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    container.innerHTML += `
+      <label>Passenger ${i+1} Name: <input type="text" name="pname${i}" required></label>
+      <label>Passenger ${i+1} Age: <input type="number" name="page${i}" required></label>
+      <label>Passenger ${i+1} Type:
+        <select name="ptype${i}" required>
+          <option value="Adult">Adult</option>
+          <option value="Child">Child</option>
+        </select>
+      </label>`;
+  }
+}
 
-    function generateTicket() {
-      alert("💸 Payment Successful!\nGenerating Ticket...");
-      document.getElementById("tpName").innerText = document.getElementById("passenger").value;
-      document.getElementById("tpTrain").innerText = document.getElementById("train").value;
-      document.getElementById("tpDate").innerText = document.getElementById("date").value;
-      nextPage('ticket');
-      setTimeout(() => {
-        downloadPDF();
-      }, 1000);
-    }
+window.onload = generatePassengerInputs;
+document.getElementById('passengerCount').addEventListener('input', generatePassengerInputs);
+document.getElementById('modeToggle').addEventListener('change', () => {
+  document.body.classList.toggle('light-mode');
+});
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  document.getElementById('bookingPage').style.display = 'none';
+  document.getElementById('paymentPage').style.display = 'block';
+  document.getElementById('totalFare').textContent = parseInt(document.getElementById('passengerCount').value) * 150;
+});
+function completeBooking() {
+  document.getElementById("paymentPage").style.display = "none";
+  document.getElementById("ticketPage").style.display = "block";
+  confetti();
+}
+function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+  const date = document.getElementById("date").value;
+  const train = document.getElementById("train").value;
+  const trainClass = document.getElementById("trainClass").value;
+  const count = parseInt(document.getElementById("passengerCount").value);
+  let total = count * 150;
+  let content = `RAIL YATRA TICKET
 
-    async function downloadPDF() {
-      const name = document.getElementById('passenger').value;
-      const from = document.getElementById('from').value;
-      const to = document.getElementById('to').value;
-      const date = document.getElementById('date').value;
-      const tickets = document.getElementById('tickets').value;
-      const train = document.getElementById('train').value;
-      const cls = document.getElementById('trainClass').value;
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      doc.setFontSize(16);
-      doc.text("ConfirmTicket - Railway eTicket", 20, 20);
-      doc.setFontSize(12);
-      let y = 40;
-      doc.text(`Train: ${train}`, 20, y); y += 10;
-      doc.text(`Class: ${cls}`, 20, y); y += 10;
-      doc.text(`Passenger: ${name}`, 20, y); y += 10;
-      doc.text(`From: ${from}`, 20, y); y += 10;
-      doc.text(`To: ${to}`, 20, y); y += 10;
-      doc.text(`Date: ${date}`, 20, y); y += 10;
-      doc.text(`No. of Tickets: ${tickets}`, 20, y); y += 20;
-      doc.text("✅ Thank you for booking with ConfirmTicket!", 20, y);
-      doc.save("ConfirmTicket.pdf");
-    }
-  </script>
-</body>
-</html>
+Train: ${train}
+Class: ${trainClass}
+From: ${from}
+To: ${to}
+Date: ${date}
+
+`;
+  for (let i = 0; i < count; i++) {
+    const name = document.querySelector(`[name='pname${i}']`).value;
+    const age = document.querySelector(`[name='page${i}']`).value;
+    const type = document.querySelector(`[name='ptype${i}']`).value;
+    content += `Passenger ${i + 1}: ${name}, Age: ${age}, Type: ${type}
+`;
+  }
+  const pnr = Math.floor(Math.random() * 9000000000) + 1000000000;
+  const txn = 'TXN' + Date.now();
+  content += `
+Total Fare: ?${total}
+PNR: ${pnr}
+Transaction ID: ${txn}`;
+  doc.text(content, 10, 10);
+  doc.save("RailYatra_Ticket.pdf");
+}
+</script>
