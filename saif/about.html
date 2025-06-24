@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - ExploreX</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+    * { margin:0; 
+      padding:0; 
+      box-sizing:border-box; 
+      font-family:'Poppins';
+    }
+    
+    body { 
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364); 
+    color:#fff; 
+    padding:2rem; }
+    .header { 
+    text-align:center; 
+    position:relative; 
+    }
+    .header h1 { 
+    font-size:3rem; 
+    color:#00fff2; 
+    animation:fadeIn 1s; 
+    }
+    .flags { 
+    position:absolute; 
+    top:0.5rem; 
+    right:1rem; 
+    font-size:1.5rem; 
+    }
+    .subtitle { 
+    text-align:center; 
+    margin:1rem 0 2rem; 
+    color:#ccc; 
+    }
+    #lottie-container { 
+    width:200px; 
+    height:200px; 
+    margin:auto; 
+    }
+
+    .destinations { 
+    display:grid; 
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); 
+    gap:2rem; 
+    max-width:1200px; 
+    margin:auto; 
+    }
+    .card { 
+    background:rgba(255,255,255,0.06); 
+    border-radius:15px; 
+    overflow:hidden; 
+    box-shadow:0 0 15px rgba(0,255,255,0.1); 
+    transition:0.4s; 
+    position:relative; 
+    }
+    .card:hover { 
+    transform:translateY(-5px); 
+    box-shadow:0 0 30px rgba(0,255,255,0.3); 
+    }
+    .card img { 
+    width:100%; 
+    height:200px; 
+    object-fit:cover; 
+    }
+    .card-content { 
+    padding:1rem; 
+    }
+    .card-content h2 { 
+    font-size:1.5rem; 
+    color:#00fff2; 
+    margin-bottom:0.5rem; 
+    }
+    .card-content p { 
+    color:#ddd; 
+    line-height:1.6; 
+    }
+    .icon-badge { 
+    position:absolute; 
+    top:10px; 
+    right:10px; 
+    background:#00e6e6; 
+    padding:0.5rem; 
+    border-radius:50%; 
+    color:#000; 
+  }
+  .go-home {
+      display: block;
+      margin: 2rem auto 0;
+      background: #00ffcc;
+      color: #000;
+      padding: 0.7rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid transparent;
+      transition: 0.3s;
+      width: max-content;
+    }
+
+    .go-home:hover {
+      background: transparent;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
+    }
+    .float-contact { 
+    position:fixed; 
+    bottom:2rem; 
+    right:2rem; 
+    background:#00e6e6; 
+    color:#000; 
+    padding:1rem;
+    border-radius:50px; 
+    font-size:1.2rem; 
+    box-shadow:0 4px 15px rgba(0,0,0,0.4); 
+    animation:float 3s ease-in-out infinite; 
+    text-decoration:none; 
+    }
+    @keyframes float { 0%,100% { 
+    transform:translateY(0); 
+    } 50% { transform:translateY(-10px); 
+    } 
+    }
+    @keyframes fadeIn { 
+    from {opacity:0; 
+    transform:translateY(-20px);
+    } to {opacity:1; 
+    transform:translateY(0);} 
+    }
+    @media(max-width:600px){ 
+    .header h1 { font-size:2rem; } 
+    }
+
+     /* width */
+     ::-webkit-scrollbar {
+        width: 3px;
+        border-radius: 15px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #00000056;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      /* Cursor Dot */
+      .cursor-dot,
+      .cursor-dot-2,
+      .cursor-dot-3,
+      .cursor-dot-4,
+      .cursor-dot-5{
+        position: relative;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        background-color: #10214b;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        pointer-events: none; 
+        /* Prevents interference with clicks */
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+        /* Ensures visibility on similar colors */
+        z-index: 9999999999999999999;
+      }
+
+      .cursor-dot-2{
+        background-color: #34a0a4;
+        width: 14px;
+        height: 14px;
+        border: none;
+        transition: transform 0.2s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-3{
+        background-color: #d7bd88;
+        width: 12px;
+        height: 12px;
+        border: none;
+        transition: transform 0.3s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-4{
+        background-color: #d0c3ba;
+        width: 10px;
+        height: 10px;
+        border: none;
+        transition: transform 0.4s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-5{
+        background-color: #ebe7e1;
+        width: 8px;
+        height: 8px;
+        border: none;
+        transition: transform 0.5s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      
+      .cursor-dot img {
+        width: 50%;
+      }
+
+      body:hover .cursor-dot,
+      body:hover .cursor-dot-2,
+      body:hover .cursor-dot-3,
+      body:hover .cursor-dot-4,
+      body:hover .cursor-dot-5{
+        opacity: 1;
+      }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot js-cursor-dot"></div>
+    <div class="cursor-dot-2 js-cursor-dot-2"></div>
+    <div class="cursor-dot-3 js-cursor-dot-3"></div>
+    <div class="cursor-dot-4 js-cursor-dot-4"></div>
+    <div class="cursor-dot-5 js-cursor-dot-5"></div>
+
+  <div class="header">
+    <div class="flags">🇮🇳 🇬🇧 🇺🇸</div>
+    <h1 data-aos="fade-down"><i class="fas fa-globe-asia"></i> About ExploreX</h1>
+    <p class="subtitle" data-aos="fade-up">Explore India's most iconic destinations with immersive visuals, info, and world-class design!</p>
+    <div id="lottie-container" data-aos="zoom-in"></div>
+  </div>
+
+  <div class="destinations">
+    <!-- Taj Mahal -->
+    <div class="card" data-aos="flip-left">
+      <div class="icon-badge"><i class="fas fa-heart"></i></div>
+      <img src="https://media.istockphoto.com/id/2195353667/photo/taj-mahal-with-gorgeous-landscape-at-sunset-in-agra-india.webp?a=1&b=1&s=612x612&w=0&k=20&c=raqKye0LwfhYepz4D0EJPAfdn4phRW6ThppPuxlUBM0=" alt="Taj Mahal">
+      <div class="card-content">
+        <h2>Taj Mahal</h2>
+        <p>Built by Shah Jahan in honor of Mumtaz Mahal, this white-marble monument in Agra is a UNESCO site and a global icon of love.</p>
+      </div>
+    </div>
+
+    <!-- Jaipur -->
+    <div class="card" data-aos="flip-left" data-aos-delay="100">
+      <div class="icon-badge"><i class="fas fa-building"></i></div>
+      <img src="https://media.istockphoto.com/id/2189355234/photo/jaswant-thada-mausoleum-and-mehrangarh-fort-in-jodhpur-rajasthan-india.webp?a=1&b=1&s=612x612&w=0&k=20&c=YUp8PaRCTPQME5Bza4dQJyYH253PsuxGNEk7K9WVp2M=" alt="Jaipur">
+      <div class="card-content">
+        <h2>Jaipur</h2>
+        <p>The Pink City, home to majestic forts (Amer), royal palaces, bustling bazaars, and rich Rajasthani culture.</p>
+      </div>
+    </div>
+
+    <!-- Kolkata -->
+    <div class="card" data-aos="flip-left" data-aos-delay="200">
+      <div class="icon-badge"><i class="fas fa-book"></i></div>
+      <img src="https://images.unsplash.com/photo-1702365202232-c29f1d96c098?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a29sa2F0YSUyMGFlc3RoZXRpYyUyMGltYWdlfGVufDB8fDB8fHww" alt="Kolkata">
+      <div class="card-content">
+        <h2>Kolkata</h2>
+        <p>The cultural heart of India—Victoria Memorial, Howrah Bridge, literature, art, music, and historic charm.</p>
+      </div>
+    </div>
+
+    <!-- Kashmir -->
+    <div class="card" data-aos="flip-left" data-aos-delay="300">
+      <div class="icon-badge"><i class="fas fa-mountain"></i></div>
+      <img src="https://images.unsplash.com/photo-1693999024492-8598a389ac7d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a2FzaG1pciUyMGFlc3RoZXRpYyUyMGltYWdlfGVufDB8fDB8fHww " alt="Kashmir">
+      <div class="card-content">
+        <h2>Kashmir</h2>
+        <p>"Heaven on Earth": scenic valleys, snow-capped peaks, Dal Lake houseboats, and serene Mughal gardens.</p>
+      </div>
+    </div>
+
+    <!-- Kerala -->
+    <div class="card" data-aos="flip-left" data-aos-delay="400">
+      <div class="icon-badge"><i class="fas fa-water"></i></div>
+      <img src="https://images.unsplash.com/photo-1643008248565-231cfa48707d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGtlcmFsYSUyMGFlc3RoZXRpYyUyMGltYWdlfGVufDB8fDB8fHww" alt="Kerala">
+      <div class="card-content">
+        <h2>Kerala</h2>
+        <p>“God’s Own Country”: peaceful backwaters, Ayurvedic wellness, lush hills, spice trails, and boat stays.</p>
+      </div>
+    </div>
+  </div>
+
+  <a class="go-home" href="index.html"><i class="fas fa-home"></i> Go to Home</a>
+  <a href="contact.html" class="float-contact"><i class="fas fa-phone"></i> Contact Us</a>
+
+  <!-- AOS & Lottie Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+    lottie.loadAnimation({
+      container: document.getElementById('lottie-container'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://assets3.lottiefiles.com/packages/lf20_jcikwtux.json'
+    });
+
+     // Following dot logic
+     const dot = document.querySelector(".js-cursor-dot");
+
+document.addEventListener("mousemove", (e) => {
+  let x = e.clientX;
+  let y = e.clientY;
+
+  // Adjusting position to center the dot on the cursor
+  dot.style.transform = `translate(${x - dot.offsetWidth / 2}px, ${y - dot.offsetHeight / 2}px)`;
+});
+
+const dot2 = document.querySelector(".js-cursor-dot-2");
+
+document.addEventListener("mousemove", (e) => {
+  let x = e.clientX;
+  let y = e.clientY;
+
+  // Adjusting position to center the dot on the cursor
+  dot2.style.transform = `translate(${x - dot2.offsetWidth / 2}px, ${y - dot2.offsetHeight / 2}px)`;
+});
+const dot3 = document.querySelector(".js-cursor-dot-3");
+
+document.addEventListener("mousemove", (e) => {
+  let x = e.clientX;
+  let y = e.clientY;
+
+  // Adjusting position to center the dot on the cursor
+  dot3.style.transform = `translate(${x - dot3.offsetWidth / 2}px, ${y - dot3.offsetHeight / 2}px)`;
+});
+const dot4 = document.querySelector(".js-cursor-dot-4");
+
+document.addEventListener("mousemove", (e) => {
+  let x = e.clientX;
+  let y = e.clientY;
+
+  // Adjusting position to center the dot on the cursor
+  dot4.style.transform = `translate(${x - dot4.offsetWidth / 2}px, ${y - dot4.offsetHeight / 2}px)`;
+});
+const dot5 = document.querySelector(".js-cursor-dot-5");
+
+document.addEventListener("mousemove", (e) => {
+  let x = e.clientX;
+  let y = e.clientY;
+
+  // Adjusting position to center the dot on the cursor
+  dot5.style.transform = `translate(${x - dot5.offsetWidth / 2}px, ${y - dot5.offsetHeight / 2}px)`;
+});
+  </script>
+</body>
+</html>

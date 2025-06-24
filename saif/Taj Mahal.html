@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taj Mahal</title>
+  <style>
+    body{
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    }
+
+    div {
+    padding: 40px 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transition: transform 1s, opacity 1s ease;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+  div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    border-radius: 2;
+  }
+
+  .img-card:hover{
+    transition: color 0.3s ease;
+    scale: 1.1;
+    background-color: rgb(239, 113, 55);
+  }
+ 
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .heading{
+    text-align: center;
+    height: 85%;
+    display: flex;
+    align-items: center;
+  }
+#button{
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="card animate-on-scroll">
+    <img src="https://media.istockphoto.com/id/492494571/photo/morning-in-taj-mahal.jpg?s=612x612&w=0&k=20&c=E47RjlOLttxB0wf2xhZhFIIxfqiSu7_JkoOP6E2g3oI=" alt="Taj Mahal">
+    <h1 class="heading">🎉Welcome to the Timeless Beauty of the Taj Mahal🎉</h1> 
+   
+</div>
+<div class="card animate-on-scroll">
+  <img src="https://media.istockphoto.com/id/2193695139/photo/motion-blurred-people-in-front-of-taj-mahal-in-agra.jpg?s=612x612&w=0&k=20&c=HSJuiRMBN95DjxOsp2xoMf4rB80i9P57cuuVzMBkGH0=" alt="Taj Mahal">
+  <h3>
+     <p> Dear Traveler,</p>
+      
+      Get ready to experience one of the greatest wonders the world has ever seen — The Taj Mahal, a symbol of eternal love and architectural brilliance!
+     <p> The Taj Mahal is one of the Seven Wonders of the World and a symbol of eternal love.</p>
+   <p> The Taj Mahal is one of the Seven Wonders of the World and a symbol of eternal love.</p>
+    </h3>
+</div>
+<div class="card animate-on-scroll">
+  <img src="https://media.istockphoto.com/id/952763206/photo/taj-mahal-agra-india.jpg?s=612x612&w=0&k=20&c=UewjQYDOMWTn8XOWa8UGn3Y5mR3Po0z2ujaVrdCZQic=" alt="Jaipur">
+ <h2> 📍 Location: Agra, Uttar Pradesh, India
+ <p> 📅 Best Time to Visit: October to March (pleasant weather and clear skies)</p>
+<p> 🕰 Opening Hours: Sunrise to Sunset (closed on Fridays)</p>
+  </h2>
+</div>
+
+<a href="place.html" id="button">back to home</a>
+
+</body>
+</html>

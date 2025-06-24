@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ExploreX - Discover Your Next Adventure</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      scroll-behavior: smooth;
+      overflow: hidden;
+    }
+
+    body {
+      background: linear-gradient(#00000060, #00000060), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      backdrop-filter: blur(100px);
+      background-color: rgba(255, 255, 255, 0.05);
+        padding: 10px 1%;
+     
+      justify-content: space-between;
+       position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        z-index: 99999999;
+        padding: 0vw 5vw
+      
+      
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    nav a {
+      color: #2bf8ccc9;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      position: relative;
+      font-size: 20px;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg,#1b263b, #778da9, #e0e1dd, #ffffff);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .hero {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px 200px;
+    }
+
+    .hero h1 {
+     color: rgb(5, 88, 30);
+        font-size: 335%;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        padding: 20px 40px;
+        border-radius: 12px;
+        height: fit-content;
+        animation:float 3s ease-in-out infinite; 
+    text-decoration:none; 
+    }
+    @keyframes float { 0%,100% { 
+    transform:translateY(0); 
+    } 50% { transform:translateY(-10px); 
+    } 
+    }
+    
+
+    .hero p {
+      font-size: 1.3rem;
+      color: #f0e6ef;
+      text-shadow: 1px 1px 3px #000000aa;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 14px;
+      color: #000000;
+      font-weight: bold;
+      font-family: cursive;
+      text-align: center;
+      font-size: 15px; 
+      position: absolute;
+      left: 50%;
+      top: 90%;
+      transform: translateX(-50%);
+      padding: 15px; 
+      width: 100%;
+      backdrop-filter: blur(10px);
+    }
+
+    footer:hover{
+      color: #34a0a4;
+      
+    }
+    
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+
+
+
+
+    /* width */
+      ::-webkit-scrollbar {
+        width: 3px;
+        border-radius: 15px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #00000056;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      /* Cursor Dot */
+      .cursor-dot,
+      .cursor-dot-2,
+      .cursor-dot-3,
+      .cursor-dot-4,
+      .cursor-dot-5{
+        position: relative;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        background-color: #10214b;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        pointer-events: none; 
+        /* Prevents interference with clicks */
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+        /* Ensures visibility on similar colors */
+        z-index: 9999999999999999999;
+      }
+
+      .cursor-dot-2{
+        background-color: #34a0a4;
+        width: 14px;
+        height: 14px;
+        border: none;
+        transition: transform 0.2s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-3{
+        background-color: #d7bd88;
+        width: 12px;
+        height: 12px;
+        border: none;
+        transition: transform 0.3s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-4{
+        background-color: #d0c3ba;
+        width: 10px;
+        height: 10px;
+        border: none;
+        transition: transform 0.4s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-5{
+        background-color: #ebe7e1;
+        width: 8px;
+        height: 8px;
+        border: none;
+        transition: transform 0.5s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      
+      .cursor-dot img {
+        width: 50%;
+      }
+
+      body:hover .cursor-dot,
+      body:hover .cursor-dot-2,
+      body:hover .cursor-dot-3,
+      body:hover .cursor-dot-4,
+      body:hover .cursor-dot-5{
+        opacity: 1;
+      }
+
+   
+ </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="typingText" style="font-size: 30px; font-family: cursive; font-weight: bold; color: #fdf0d5;"></h2>
+
+    <nav>
+      <a href="place.html">Places</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+ 
+  </header>
+
+  <div class="cursor-dot js-cursor-dot"></div>
+    <div class="cursor-dot-2 js-cursor-dot-2"></div>
+    <div class="cursor-dot-3 js-cursor-dot-3"></div>
+    <div class="cursor-dot-4 js-cursor-dot-4"></div>
+    <div class="cursor-dot-5 js-cursor-dot-5"></div>
+
+    
+    
+
+
+  <section class="hero">
+    <h1>Explore The Wonders Of India </h1>
+    <p>From The Snow Capped Peaks Of Kashmir To The BackWaters Of Kerala, <BR>India Offers An Unforgettable Journey Of Culture, History And Natural Beauty </p>
+  </section>
+
+  <footer>
+  © 2024 | Created by Shaikh Saifodin – CABA-MDTP Diploma July 2024<br>
+Dedicated to learning and exploring the amazing world of animals.
+</footer>
+
+
+<script>
+
+
+  // Following dot logic
+      const dot = document.querySelector(".js-cursor-dot");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot.style.transform = `translate(${x - dot.offsetWidth / 2}px, ${y - dot.offsetHeight / 2}px)`;
+      });
+
+      const dot2 = document.querySelector(".js-cursor-dot-2");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot2.style.transform = `translate(${x - dot2.offsetWidth / 2}px, ${y - dot2.offsetHeight / 2}px)`;
+      });
+      const dot3 = document.querySelector(".js-cursor-dot-3");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot3.style.transform = `translate(${x - dot3.offsetWidth / 2}px, ${y - dot3.offsetHeight / 2}px)`;
+      });
+      const dot4 = document.querySelector(".js-cursor-dot-4");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot4.style.transform = `translate(${x - dot4.offsetWidth / 2}px, ${y - dot4.offsetHeight / 2}px)`;
+      });
+      const dot5 = document.querySelector(".js-cursor-dot-5");
+
+      document.addEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+
+        // Adjusting position to center the dot on the cursor
+        dot5.style.transform = `translate(${x - dot5.offsetWidth / 2}px, ${y - dot5.offsetHeight / 2}px)`;
+      });
+
+//typing effect
+       const text = "Incredible India";
+  let i = 0;
+  const typingText = document.getElementById("typingText");
+
+  function typeEffect() {
+    if (i < text.length) {
+      typingText.innerHTML += text.charAt(i);
+      i++;
+    } else {
+      // Reset after complete typing
+      i = 0;
+      typingText.innerHTML = "";
+    }
+    setTimeout(typeEffect, 100); // 1 second delay
+  }
+  window.onload = typeEffect;
+  
+</script>
+</body>
+</html>

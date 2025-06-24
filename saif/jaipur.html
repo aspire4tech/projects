@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaipur</title>
+  <style>
+body{
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    }
+
+    div {
+    padding: 40px 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transition: transform 1s, opacity 1s ease;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+  div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 2;
+  }
+
+  .img-card:hover{
+    transition: color 0.3s ease;
+    scale: 1.1;
+    background-color: rgb(239, 113, 55);
+  }
+ 
+  .card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+  }
+  
+    .heading{
+      text-align: center;
+      height: 85%;
+      display: flex;
+      align-items: center;
+    }
+
+    #button{
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card animate-on-scroll">
+    <img src="https://media.istockphoto.com/id/1291961188/photo/stunning-view-of-the-hawa-mahal-at-sunset-with-blurred-people-walking-during-the-covid-19.jpg?s=612x612&w=0&k=20&c=6au0sGRJARDE3Y6sjuZotM2aMJR3X2AUc9zUP37lcBk=" alt="jaipur">
+    <h1 class="heading">🎉 Welcome to Jaipur – The Royal Pink City of India 🎉</h1> 
+   
+</div>
+<div class="card animate-on-scroll">
+  <img src="https://media.istockphoto.com/id/472097327/photo/jal-mahal-palace-with-bougainvilleas-flowers-in-the-foreground.jpg?s=612x612&w=0&k=20&c=dAnm7YRMbVYC7dS8QlzbMnxNzhqHXS8TynR2c2nMR4Y=" alt="jaipur">
+  <h2>
+     <p> Dear Traveler,</p>
+      
+     Step into a land of kings and palaces, where history breathes through ancient forts and vibrant streets — Welcome to Jaipur, the capital of Rajasthan and a royal treasure of India!
+    </h2>
+</div>
+<div class="card animate-on-scroll">
+  <img src="https://media.istockphoto.com/id/1127479843/photo/inside-of-the-hawa-mahal-or-the-palace-of-winds-at-jaipur-india-it-is-constructed-of-red-and.jpg?s=612x612&w=0&k=20&c=i60qAiU7pz_3QLtihXWeCb2aZllyQsBCnDkisXG7fwU=" alt="jaipur">
+ <h2>
+   <p> 📍 Location: Rajasthan, India</p>
+ <p>📅 Best Time to Visit: October to March (cool weather and colorful festivals)</p>
+ <p> 🕰 Top Attractions Timings: Most forts open from 9:00 AM to 5:00 PM</p>
+  </h2>
+</div>
+<a href="place.html" id="button"> back to home </a>
+
+</body>
+</html>

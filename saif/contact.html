@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - ExploreX Tourism</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+      justify-content: center;
+    }
+
+    .form-box, .info-box {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(16, 237, 245, 0.918);
+      animation: slideUp 1.2s ease;
+
+    }
+
+    
+
+    .form-box input, .form-box textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #00e6e6;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .form-box input:focus, .form-box textarea:focus {
+      outline: none;
+      border-color: #00ffcc;
+    }
+
+    .form-box label {
+      font-weight: 300;
+      font-size: 0.9rem;
+    }
+
+    .form-box button {
+      background: #00e6e6;
+      border: 2px solid transparent;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .form-box button:hover {
+      background: transparent;
+      color: #00e6e6;
+      border: 2px solid #07c0ee;
+      transform: scale(1.05);
+      border-radius: 50% 10% 50% 10%/ 10% 50% 10% 50%;
+    }
+    
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .socials a {
+      color: #000;
+      padding: 0.7rem;
+      height: 50px;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.9rem;
+      transition: 0.4s;
+    }
+
+    .socials a:hover {
+      background: #00e6e6;
+      transform: rotate(15deg) scale(1.2);
+      color: #000;
+    }
+
+    .map {
+      width: 100%;
+      height: 350px;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-top: 2rem;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .center-address {
+      display: flex;
+    }
+
+    .center-address > div{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .go-home {
+      display: block;
+      margin: 2rem auto 0;
+      background: #00ffcc;
+      color: #000;
+      padding: 0.7rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid transparent;
+      transition: 0.3s;
+      width: max-content;
+    }
+
+    .go-home:hover {
+      background: transparent;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .socials a {
+        font-size: 1.2rem;
+      }
+    }
+
+     /* width */
+     ::-webkit-scrollbar {
+        width: 3px;
+        border-radius: 15px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #00000056;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      /* Cursor Dot */
+      .cursor-dot,
+      .cursor-dot-2,
+      .cursor-dot-3,
+      .cursor-dot-4,
+      .cursor-dot-5{
+        position: relative;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        background-color: #10214b;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        pointer-events: none; 
+        /* Prevents interference with clicks */
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+        /* Ensures visibility on similar colors */
+        z-index: 9999999999999999999;
+      }
+
+      .cursor-dot-2{
+        background-color: #34a0a4;
+        width: 14px;
+        height: 14px;
+        border: none;
+        transition: transform 0.2s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-3{
+        background-color: #d7bd88;
+        width: 12px;
+        height: 12px;
+        border: none;
+        transition: transform 0.3s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-4{
+        background-color: #d0c3ba;
+        width: 10px;
+        height: 10px;
+        border: none;
+        transition: transform 0.4s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      .cursor-dot-5{
+        background-color: #ebe7e1;
+        width: 8px;
+        height: 8px;
+        border: none;
+        transition: transform 0.5s linear, opacity 0.5s ease, height 0.3s ease, width 0.3s ease, opacity 0.5s ease;
+      }
+      
+      .cursor-dot img {
+        width: 50%;
+      }
+
+      body:hover .cursor-dot,
+      body:hover .cursor-dot-2,
+      body:hover .cursor-dot-3,
+      body:hover .cursor-dot-4,
+      body:hover .cursor-dot-5{
+        opacity: 1;
+      }
+  </style>
+  <script src="https://kit.fontawesome.com/36e01a153b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="cursor-dot js-cursor-dot"></div>
+    <div class="cursor-dot-2 js-cursor-dot-2"></div>
+    <div class="cursor-dot-3 js-cursor-dot-3"></div>
+    <div class="cursor-dot-4 js-cursor-dot-4"></div>
+    <div class="cursor-dot-5 js-cursor-dot-5"></div>
+  <h1><i class="fas fa-map-pin"></i> Contact ExploreX</h1>
+
+  <div class="container">
+    <div class="form-box">
+      <form>
+        <label for="name">Name</label><br>
+        <input type="text" id="name" placeholder="Your Name" required><br>
+
+        <label for="email">Email</label><br>
+        <input type="email" id="email" placeholder="you@example.com" required><br>
+
+        <label for="message">Message</label><br>
+        <textarea id="message" rows="5" placeholder="Tell us what’s on your mind..." required></textarea><br>
+
+        <button type="submit">Send Message ✈️</button>
+      </form>
+      <div class="socials">
+        <a href="https://www.instagram.com/saifuuuuu86?igsh=OHYweG11ZWpjdTZi" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="mailto:saifushaikhsk123@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="tel:7397856179"><i class="fas fa-phone"></i></a>
+      </div>
+    </div>
+
+    <div class="info-box center-address">
+      <div>
+        <h2>📌 Our Address</h2>
+        <p>Aspire Technical Institute,<br> Parbhani, Maharashtra - 431401</p>
+        <h2>🕐 Hours</h2>
+        <p>Mon - Sat: 9:00 AM - 7:00 PM<br>Sunday: Closed</p>
+        <h2>📞 Phone</h2>
+        <p>+91-7397856179</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="map">
+    <iframe src="https://www.google.com/maps?q=aspire+technical+institute+parbhani&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+
+  <a class="go-home" href="index.html"><i class="fas fa-home"></i> Go to Home</a>
+
+  <script> // Following dot logic
+    const dot = document.querySelector(".js-cursor-dot");
+
+    document.addEventListener("mousemove", (e) => {
+      let x = e.clientX;
+      let y = e.clientY;
+
+      // Adjusting position to center the dot on the cursor
+      dot.style.transform = `translate(${x - dot.offsetWidth / 2}px, ${y - dot.offsetHeight / 2}px)`;
+    });
+
+    const dot2 = document.querySelector(".js-cursor-dot-2");
+
+    document.addEventListener("mousemove", (e) => {
+      let x = e.clientX;
+      let y = e.clientY;
+
+      // Adjusting position to center the dot on the cursor
+      dot2.style.transform = `translate(${x - dot2.offsetWidth / 2}px, ${y - dot2.offsetHeight / 2}px)`;
+    });
+    const dot3 = document.querySelector(".js-cursor-dot-3");
+
+    document.addEventListener("mousemove", (e) => {
+      let x = e.clientX;
+      let y = e.clientY;
+
+      // Adjusting position to center the dot on the cursor
+      dot3.style.transform = `translate(${x - dot3.offsetWidth / 2}px, ${y - dot3.offsetHeight / 2}px)`;
+    });
+    const dot4 = document.querySelector(".js-cursor-dot-4");
+
+    document.addEventListener("mousemove", (e) => {
+      let x = e.clientX;
+      let y = e.clientY;
+
+      // Adjusting position to center the dot on the cursor
+      dot4.style.transform = `translate(${x - dot4.offsetWidth / 2}px, ${y - dot4.offsetHeight / 2}px)`;
+    });
+    const dot5 = document.querySelector(".js-cursor-dot-5");
+
+    document.addEventListener("mousemove", (e) => {
+      let x = e.clientX;
+      let y = e.clientY;
+
+      // Adjusting position to center the dot on the cursor
+      dot5.style.transform = `translate(${x - dot5.offsetWidth / 2}px, ${y - dot5.offsetHeight / 2}px)`;
+    });
+</script>
+</body>
+</html>

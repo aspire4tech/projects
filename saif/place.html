@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Place</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+
+      body,
+      html {
+        height: 100%;
+        width: 100%;
+      }
+
+      .hero {
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        position: relative;
+        transition: background-image 0.5s ease-in-out;
+      }
+
+      .overlay {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 30px;
+        color: white;
+      }
+
+      header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        color: #001d3d;
+      }
+
+      nav a {
+        margin: 0 15px;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.4s ease;
+      }
+
+      nav a:hover {
+        color: rgb(93, 201, 255);
+      }
+
+      .main-content {
+        height: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .content-container {
+        width: 366px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 5px;
+      }
+
+      .main-content h1 {
+        font-size: 60px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      .main-content p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
+
+      .main-content .js-btn {
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        background: #1e3a8a;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 30px;
+      }
+
+      .card-container {
+        position: relative;
+        display: flex;
+        width: 600px;
+        align-items: center;
+        padding: 20px;
+        height: 100%;
+        gap: 20px;
+        padding-bottom: 10px;
+        scroll-snap-align: center;
+        scroll-snap-type: x mandatory;
+      }
+
+      .card-container::after {
+        content: "";
+        position: absolute;
+        top: 50.7%;
+        right: -20%;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0) 1%,
+          rgba(31, 31, 26, 0.95) 100%
+        );
+        width: 160px;
+        height: 250px;
+        transform: translateY(-50%);
+      }
+
+      /* height */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        display: none;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        display: none;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        display: none;
+      }
+
+      .card {
+        position: relative;
+        flex: 0 0 auto;
+        width: 200px;
+        height: 250px;
+        background: white;
+        color: black;
+        border-radius: 10px;
+        overflow: hidden;
+        scroll-snap-align: start;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      /* .card:hover {
+        transform: scale(1.05);
+      } */
+
+      .card img {
+        width: 100%;
+        height: 100%;
+        filter: brightness(0.7);
+        object-fit: cover;
+      }
+
+      .card h3 {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: white;
+        padding: 10px;
+      }
+
+      .arrow-container{
+        display: flex;
+        gap: 40px;
+        position: absolute;
+        bottom: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .arrow{
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        border: 1px solid #fff;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      @media (max-width: 720px) {
+        .arrow-container{
+          bottom: 7%;
+        }
+
+        .overlay{
+          overflow: hidden;
+        }
+
+        .content-container{
+          align-items: center;
+          height: fit-content;
+        }
+
+        .main-content {
+          justify-content: center;
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .main-content h1 {
+          font-size: 50px;
+          text-align: center;
+        }
+
+        .main-content p {
+          text-align: center;
+        }
+
+        .main-content .js-btn {
+          margin: 10px auto;
+          display: block;
+
+          width: fit-content;
+        } 
+
+        #location-title{
+          font-size: 36px;
+        }
+
+        .sub{
+          font-size: 24px;
+        }
+
+        .desc{
+          font-size: 16px;
+        }
+
+        .card-container{
+          height: fit-content;
+          display: flex;
+          padding: 0px;
+          right: -34%;
+        }
+
+        .card {
+          width: 150px;
+          height: 200px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .main-content {
+          text-align: center;
+        }
+
+        .main-content h1 {
+          font-size: 50px;
+          text-align: center;
+        }
+
+        .main-content p {
+          text-align: center;
+        }
+
+        .main-content .js-btn {
+          margin: 20px auto;
+          display: block;
+          width: fit-content;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #location-title{
+          font-size: 28px;
+        }
+
+        .sub{
+          font-size: 20px;
+        }
+
+        .card-container{
+          height: fit-content;
+          display: flex;
+          padding: 0px;
+          right: -64%;
+        }
+      }
+
+      .go-home {
+      display: block;
+      margin: 2rem auto 0;
+      background: #00ffcc;
+      color: #000;
+      padding: 0.7rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid transparent;
+      transition: 0.3s;
+      width: max-content;
+      position: absolute;
+      right: 5%;
+      bottom: 5%;
+      z-index: 9999;
+    }
+
+    .go-home:hover {
+      background: transparent;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
+    }
+
+      
+    </style>
+  </head>
+  <body>
+    <div class="hero" id="hero" style="background-image: url('https://media.istockphoto.com/id/1483523217/photo/a-woman-in-white-dress-walks-down-a-pier-over-turquoise-ocean-in-the-maldives-during-sunset.jpg?s=612x612&w=0&k=20&c=cT95MZafAv2BPTsyztSreQjzbHjv2pBspxL6BMMogK8='); /* Default background */">
+      <a class="go-home" href="index.html"><i class="fas fa-home"></i> Go to Home</a>
+      <div class="overlay">
+        <div class="main-content">
+          <div class="content-container">
+            <h1 id="location-title">INCREDIBLE INDIA</h1>
+            <h2 class="sub">Explore the Beauty of India</h2>
+            <p class="desc">Discover the most beautiful tourist destinations in India</p>
+            <a href="#" target="_blank" class="js-btn more">More →</a>
+          </div>
+          <div class="card-container">
+            <div class="main-card">
+              <div class="card">
+                <img
+                  src="https://media.istockphoto.com/id/155096944/photo/taj-mahal-sunrise.webp?a=1&b=1&s=612x612&w=0&k=20&c=Dvn71Q1jHfT9NRIbTb_f17b2dw1cBwCg6Y2UX19UchM="
+                  alt="Taj mahal"
+                  data-title="Taj Mahal "
+                  data-sub="Agra, Uttar Pradesh"
+                  data-desc="The Eternal Symbol of Love
+                  The Taj Mahal, built by Mughal Emperor Shah Jahan in memory of his beloved wife Mumtaz "
+                  data-more="taj mahal.html"
+                />
+                <h3>Taj Mahal</h3>
+              </div>
+            </div>
+
+            <div class="main-card">
+              <div class="card">
+                <img
+                  src="https://media.istockphoto.com/id/1263953408/photo/the-historic-amber-fort-and-amber-palace-in-jaipur-india.webp?a=1&b=1&s=612x612&w=0&k=20&c=apqCPQUzRpCMg_Vw-EcDqXXBSTY5dq4HxorbU71ymG8="
+                  alt="jaipur"
+                  data-title=" Jaipur Rajasthan"
+                  data-sub="The Pink City of Royal Heritage"
+                  data-desc="Jaipur, the capital of Rajasthan, is famous for its vibrant culture, grand palaces, and historic forts."
+                  data-more="jaipur.html"
+                />
+                <h3>jaipur</h3>
+              </div>
+            </div>
+
+            <div class="main-card">
+              <div class="card">
+                <img
+                  src="https://media.istockphoto.com/id/172356630/photo/victoria-memorial-kolkata.jpg?s=612x612&w=0&k=20&c=kZovXPusVdve8G_6mvcOaO4O2rli4wldy0OFko_FvYM="
+                  alt="Kolkata"
+                  data-title="Kolkata 
+                  "
+                  data-sub="City of Joy and Cultural Splendor"
+                  data-desc="Kolkata, once the capital of British India, is a melting pot of colonial architecture, art, literature, and intellectual heritage."
+                  data-more="kolkata.html"
+                />
+                <h3>Kolkata</h3>
+              </div>
+            </div>
+
+            <div class="main-card">
+              <div class="card">
+                <img
+                  src="https://media.istockphoto.com/id/511119924/photo/tea-plantations-and-river-in-hills-kerala-india.jpg?s=612x612&w=0&k=20&c=pYHem1q8SIdCC7t7pv3s6QM1ZrmU3nkCoSaEQMg8vqg="
+                  alt="Kerala"
+                  data-title=" Kerala"
+                  data-sub="God's Own Country" 
+                  data-desc="A Paradise of Backwaters and Greenery
+                  Kerala offers a unique mix of scenic beauty and cultural richness"
+                  data-more="kerala.html"
+                />
+                <h3>Kerala</h3>
+              </div>
+            </div>
+
+            <div class="main-card">
+              <div class="card">
+                <img
+                  src="https://media.istockphoto.com/id/1311915779/photo/idyllic-centre-of-countryside.jpg?s=612x612&w=0&k=20&c=xsZqwiQDvoNPPtgdSfZtjq1xTovMYl8qZzGO55ZNwjQ="
+                  alt="Kashmir"
+                  data-title="Kashmir"
+                  data-sub="The Heaven on Earth"
+                  data-desc="Where Nature Meets Serenity
+                  Kashmir is known for its breathtaking landscapes, snow-capped mountains, and charming valleys"
+                  data-more="kashmir.html"
+                />
+                <h3>Kashmir</h3>
+              </div>
+            </div>
+          </div>
+          <div class="arrow-container">
+            <div class="right-arrow arrow"><i class="ri-arrow-right-s-line"></i></div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+    <script>
+      const cardContainer = document.querySelector(".card-container"); 
+      const hero = document.getElementById("hero");
+      const sub = document.querySelector(".sub");
+      const title = document.getElementById("location-title");
+      const desc = document.querySelector(".desc");
+      const more = document.querySelector(".more");
+      const btnEl = document.querySelector(".js-btn");
+      const leftArrowEl = document.querySelector(".left-arrow");
+      const rightArrowEl = document.querySelector(".right-arrow");
+
+      let index = 0;
+
+      rightArrowEl.addEventListener("click", () => {
+        // Update background image
+        const imgEls = document.querySelectorAll(".card img"); // refresh
+        hero.style.backgroundImage = `url(${imgEls[index].src})`;
+        title.innerHTML = imgEls[index].dataset.title;
+        sub.innerHTML = imgEls[index].dataset.sub;
+        desc.innerHTML = imgEls[index].dataset.desc;
+        more.href = imgEls[index].dataset.more;
+
+        // Select the first card
+        const firstCard = document.querySelector(".main-card");
+ 
+        // Move first card to the end of its parent container
+        cardContainer.appendChild(firstCard);
+      });
+
+      cardContainer.addEventListener("click", (e) => {
+        console.log(e.target);
+      })
+    </script>
+  </body>
+</html>
